@@ -13,8 +13,8 @@ app.config["MONGO_URI"] = 'mongodb+srv://chief_user:cookpass@cookbook-zwtc4.mong
 mongo = PyMongo(app)
 
 @app.route('/')
-@app.route('/get_recipes')
-def get_recipes():
+@app.route('/get_receipes')
+def get_receipes():
     return render_template('receipes_list.html', receipes=mongo.db.receipes.find())
     
 
