@@ -9,14 +9,26 @@
     {% for recipe in recipes %}
         {{recipe.name}}
         {{recipe.description}}
-        {{recipe.ingredients}}
-        {{recipe.tools}}
-        {{recipe.steps}}
-        {{recipe.country}}
-        {{recipe.type}}
+        {% for ingredient in recipe.ingredients %}
+            <p>{{ingredient}}</p>
+        {% endfor %}
+        {% for tool in recipe.tools %}
+            <p>{{tool}}</p>
+        {% endfor %}
+        {% for step in recipe.steps %}
+            <p>{{step}}</p>
+        {% endfor %}
+        {% for country in recipe.country %}
+            <p>{{country}}</p>
+        {% endfor %}
+        {% for type in recipe.type %}
+            <p>{{type}}</p>
+        {% endfor %}
         {{recipe.upload_date}}
-        {{recipe.feed-back}}
-        {{recipe.vegan}}
+        {% for feed in recipe.feed_back %}
+            <p>{{feed}}</p>
+        {% endfor %}
+        <p>Is this ok for vegan? The answer is {{recipe.vegan}}</p>
     {% endfor %}
 </body>
 </html>
