@@ -1,34 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% for recipe in recipes %}
-        {{recipe.name}}
-        {{recipe.description}}
-        {% for ingredient in recipe.ingredients %}
-            <p>{{ingredient}}</p>
-        {% endfor %}
-        {% for tool in recipe.tools %}
-            <p>{{tool}}</p>
-        {% endfor %}
-        {% for step in recipe.steps %}
-            <p>{{step}}</p>
-        {% endfor %}
-        {% for country in recipe.country %}
-            <p>{{country}}</p>
-        {% endfor %}
-        {% for type in recipe.type %}
-            <p>{{type}}</p>
-        {% endfor %}
-        {{recipe.upload_date}}
-        {% for feed in recipe.feed_back %}
-            <p>{{feed}}</p>
-        {% endfor %}
-        <p>Is this ok for vegan? The answer is {{recipe.vegan}}</p>
-    {% endfor %}
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+        <div class="row"> 
+            {% for recipe in recipes %}
+                <div id="modal1" class="modal">
+                    <div class="modal-content">
+                        <h4>{{recipe.name}}</h4>
+                                <div class="row">
+                                    <div class="card">
+                                        <div class="col s12">
+                                            <div class="card-image">
+                                                <img src="https://storage0.dms.mpinteractiv.ro/media/2/2621/33527/15177421/1/oua.jpg">
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </div>
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <div class="card">
+                                                    <span class="card-title">Description</span>
+                                                    <div class="card-content">
+                                                        <p>{{recipe.description}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s6">
+                                                <div class="card">
+                                                    <span class="card-title">Tools</span>
+                                                    <div class="card-content">
+                                                        {% for tool in recipe.tools %}
+                                                                <p>{{tool}}</p>
+                                                            {% endfor %}
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col s6">
+                                                <div class="card">
+                                                    <span class="card-title">Ingredients</span>
+                                                    <div class="card-content">
+                                                        {% for ingredient in recipe.ingredients %}
+                                                            <p>{{ingredient}}</p>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <div class="card">
+                                                    <span class="card-title">Steps</span>
+                                                    <div class="card-content">
+                                                        {% for step in recipe.steps %}
+                                                            <p>{{step}}</p>
+                                                            {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                    </div>
+                    <div class="modal-footer">
+                            <div class="row">
+                                <div class="col s2 "><div class="chip"><i class="material-icons">sentiment_very_satisfied</i>{{recipe.rating[0]}}</div></div>
+                                <div class="col s2"><div class="chip"><i class="material-icons">sentiment_very_dissatisfied</i>{{recipe.rating[1]}}</div></div>
+                                <div class="col s2"><a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a></div>
+                                <div class="col s2">Edit</div>
+                                <div class="col s2">Save</div>
+                                <div class="col s2">Delete</div>
+                            </div>    
+                        
+                    </div>
+                </div>   
+                <div class="col s12 m3">
+                    <div class="card">
+                        <div class="card-image">
+                            <img class="recipe_img" src="https://storage0.dms.mpinteractiv.ro/media/2/2621/33527/15177421/1/oua.jpg">
+                            <span class="card-title">{{recipe.name}}</span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light red btn modal-trigger" href="#modal1"><i class="material-icons">info</i></a>
+                        </div>
+                        <div class="card-content">
+                            <p>{{recipe.description}}</p>
+                        </div>
+                        <div class="card-action">
+                            <div class="row">
+                                <div class="col s6 "><div class="chip"><i class="material-icons">sentiment_very_satisfied</i>{{recipe.rating[0]}}</div></div>
+                                <div class="col s6 push-s2"><div class="chip"><i class="material-icons">sentiment_very_dissatisfied</i>{{recipe.rating[1]}}</div></div>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+{% endblock %}
