@@ -4,7 +4,7 @@
             {% for recipe in recipes %}
                 <div id="modal1" class="modal">
                     <div class="modal-content">
-                        <h4>{{recipe.name}}</h4>
+                        <h4 id="recipe-name" class="cap-text">{{recipe.name}}</h4>
                                 <div class="row">
                                     <div class="card">
                                         <div class="col s12">
@@ -17,9 +17,9 @@
                                         <div class="row">
                                             <div class="col s12">
                                                 <div class="card">
-                                                    <span class="card-title">Description</span>
-                                                    <div class="card-content">
-                                                        <p>{{recipe.description}}</p>
+                                                    <span class="card-title margin-1rem-left">Description</span>
+                                                    <div class="card-content cap-text">
+                                                        <p id="recipe-description">{{recipe.description}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -27,20 +27,20 @@
                                         <div class="row">
                                             <div class="col s6">
                                                 <div class="card">
-                                                    <span class="card-title">Tools</span>
+                                                    <span class="card-title margin-1rem-left">Tools</span>
                                                     <div class="card-content">
                                                         {% for tool in recipe.tools %}
-                                                                <p>{{tool}}</p>
+                                                                <p class="cap-text recipe-tool">{{tool}}</p>
                                                             {% endfor %}
                                                         </div>
                                                 </div>
                                             </div>
                                             <div class="col s6">
                                                 <div class="card">
-                                                    <span class="card-title">Ingredients</span>
+                                                    <span class="card-title margin-1rem-left">Ingredients</span>
                                                     <div class="card-content">
                                                         {% for ingredient in recipe.ingredients %}
-                                                            <p>{{ingredient}}</p>
+                                                            <p class="cap-text recipe-ingredient">{{ingredient}}</p>
                                                         {% endfor %}
                                                     </div>
                                                 </div>
@@ -49,24 +49,23 @@
                                         <div class="row">
                                             <div class="col s12">
                                                 <div class="card">
-                                                    <span class="card-title">Steps</span>
+                                                    <span class="card-title margin-1rem-left">Steps</span>
                                                     <div class="card-content">
                                                         {% for step in recipe.steps %}
-                                                            <p>{{step}}</p>
+                                                            <p class="cap-text recipe-step">{{step}}</p>
                                                             {% endfor %}
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                     </div>
-                    <div class="modal-footer">
+                    <div id="details-footer" class="modal-footer">
                             <div class="row">
-                                <div class="col s2 "><div class="chip"><i class="material-icons">sentiment_very_satisfied</i>{{recipe.rating[0]}}</div></div>
-                                <div class="col s2"><div class="chip"><i class="material-icons">sentiment_very_dissatisfied</i>{{recipe.rating[1]}}</div></div>
-                                <div class="col s2"><a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a></div>
-                                <div class="col s2">Edit</div>
-                                <div class="col s2">Save</div>
-                                <div class="col s2">Delete</div>
+                                <div class="col s2 "><div class="chip"><i class="material-icons" alt="like button">sentiment_very_satisfied</i>{{recipe.rating[0]}}</div></div>
+                                <div class="col s3"><div class="chip"><i class="material-icons" alt="dislike button">sentiment_very_dissatisfied</i>{{recipe.rating[1]}}</div></div>
+                                <div id="edit-button" class="col s2"><i class="material-icons" alt="edit recipe">edit</i></div>
+                                <div class="col s2"><i class="material-icons" alt="delete recipe">delete</i></div>
+                                <div class="col s2"><a href="#!" class="modal-close"><i class="material-icons" alt="close window">close</i></a></div>
                             </div>    
                         
                     </div>
@@ -75,11 +74,11 @@
                     <div class="card">
                         <div class="card-image">
                             <img class="recipe_img" src="https://storage0.dms.mpinteractiv.ro/media/2/2621/33527/15177421/1/oua.jpg">
-                            <span class="card-title">{{recipe.name}}</span>
+                            <span class="card-title cap-text">{{recipe.name}}</span>
                             <a class="btn-floating halfway-fab waves-effect waves-light red btn modal-trigger" href="#modal1"><i class="material-icons">info</i></a>
                         </div>
                         <div class="card-content">
-                            <p>{{recipe.description}}</p>
+                            <p class="cap-text">{{recipe.description}}</p>
                         </div>
                         <div class="card-action">
                             <div class="row">
