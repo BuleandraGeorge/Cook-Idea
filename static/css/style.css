@@ -8,3 +8,28 @@
 .cap-text{
     text-transform: capitalize;
 }
+#edit-footer{
+    display:none;
+}
+.overlay-layer-delete{
+    position:fixed;
+    z-index: 1500;
+    top:0;
+    left:0;
+    width:100%;
+    height: 100%;
+    background-color:rgba(0,0,0,0.5);
+    display:none;
+
+}
+.modal-layer-delete{
+    position: absolute;
+    z-index: 1600;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    width:35%;
+    height:25%;
+    border-radius:0.4rem;
+    padding:1rem;
+}

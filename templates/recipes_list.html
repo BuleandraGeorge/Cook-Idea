@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-        <div class="row"> 
             {% for recipe in recipes %}
                 <div id="modal1" class="modal">
                     <div class="modal-content">
@@ -61,16 +60,21 @@
                     </div>
                     <div id="details-footer" class="modal-footer">
                             <div class="row">
-                                <div class="col s2 "><div class="chip"><i class="material-icons" alt="like button">sentiment_very_satisfied</i>{{recipe.rating[0]}}</div></div>
-                                <div class="col s3"><div class="chip"><i class="material-icons" alt="dislike button">sentiment_very_dissatisfied</i>{{recipe.rating[1]}}</div></div>
-                                <div id="edit-button" class="col s2"><i class="material-icons" alt="edit recipe">edit</i></div>
-                                <div class="col s2"><i class="material-icons" alt="delete recipe">delete</i></div>
-                                <div class="col s2"><a href="#!" class="modal-close"><i class="material-icons" alt="close window">close</i></a></div>
+                                <div class="col s2 "><div class="chip"><i class="material-icons">sentiment_very_satisfied</i>{{recipe.rating[0]}}</div></div>
+                                <div class="col s3"><div class="chip"><i class="material-icons">sentiment_very_dissatisfied</i>{{recipe.rating[1]}}</div></div>
+                                <div id="edit-button" class="col s2"><i class="material-icons">edit</i></div>
+                                <div id="delete-recipe-btn" class="col s2"><i class="material-icons">delete</i></div>
+                                <div class="col s2"><a href="#!" class="modal-close"><i class="material-icons">close</i></a></div>
                             </div>    
-                        
+                    </div>
+                    <div id="edit-footer" class="modal-footer">
+                            <div class="row">
+                                <div class="col s3"><a href="#!" class="waves-effect waves-light  btn-small modal-close"><i class="material-icons left">check</i>Confirm</a></div>
+                                <div class="col s2 push-s5"><a href="recipe_list.html" class="waves-effect red darken-1  btn-small modal-close"><i class="material-icons left">cancel</i>Cancel</a></div>
+                            </div>    
                     </div>
                 </div>   
-                <div class="col s12 m3">
+                <div class="col s4">
                     <div class="card">
                         <div class="card-image">
                             <img class="recipe_img" src="https://storage0.dms.mpinteractiv.ro/media/2/2621/33527/15177421/1/oua.jpg">
@@ -89,5 +93,4 @@
                     </div>
                 </div>
             {% endfor %}
-        </div>
 {% endblock %}
