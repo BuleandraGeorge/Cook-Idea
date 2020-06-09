@@ -1,3 +1,28 @@
+document.getElementById('add-step-add').addEventListener('click', function(){
+    newInput=document.createElement('input');
+    newInput.setAttribute('placeholder', 'Which\'s next step?');
+    newInput.setAttribute('type', 'text');
+    newInput.setAttribute('class', 'validate');
+    referenceNode=document.getElementById('add-step-add')
+    document.getElementById('add-steps-section').insertBefore(newInput, referenceNode);
+})
+document.getElementById('add-tool-add').addEventListener('click', function(){
+    newInput=document.createElement('input');
+    newInput.setAttribute('placeholder', 'Add a tool');
+    newInput.setAttribute('type', 'text');
+    newInput.setAttribute('class', 'validate');
+    referenceNode=document.getElementById('add-tool-add')
+    document.getElementById('add-tools-section').insertBefore(newInput, referenceNode);
+})
+document.getElementById('add-ingredient-add').addEventListener('click', function(){
+    newInput=document.createElement('input');
+    newInput.setAttribute('placeholder', 'Add an ingredient');
+    newInput.setAttribute('type', 'text');
+    newInput.setAttribute('class', 'validate');
+    referenceNode=document.getElementById('add-ingredient-add')
+    document.getElementById('add-ingredients-section').insertBefore(newInput, referenceNode);
+})
+
 document.getElementById("edit-button").addEventListener("click", function(){
     content=document.getElementById("recipe-name").innerHTML;
     document.getElementById("recipe-name").innerHTML="<input placeholder=\"Introduce a name for the recipe\" value=\""+content+"\">";
@@ -18,7 +43,6 @@ document.getElementById("edit-button").addEventListener("click", function(){
     document.getElementById("details-footer").style.display="none";
     document.getElementById("edit-footer").style.display="initial";
 })
-
 document.getElementById('delete-recipe-btn').addEventListener('click', function(){
     document.getElementById('delete-modal-msg').style.display='initial';
 })
