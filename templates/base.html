@@ -38,7 +38,7 @@
     </header>
     <div class="row">
      <div class="col s2">
-            <form>
+            <form action="{{url_for('display_recipes')}}">
                 <div class="row blue lighten-5">
                     <div class="col s12"><h5>Search</h5></div>
                     <div class="input-field col s12">
@@ -46,7 +46,7 @@
                                 <label for="search_name" class="active">Name</label>
                     </div>
                     <div class="col s12 input-field">
-                     <select multiple>
+                     <select id="zones" multiple>
                         <option value="" selected>Any</option>
                         {% for area in zones %}
                             {% for x in area.zone %}
@@ -57,11 +57,11 @@
                         <label>Select a country</label>
                     </div>
                     <div class="col s12 input-field">
-                     <select multiple>
+                     <select id="types" multiple>
                         <option value="" selected>Any</option>
                         {% for type in types %}
                             {% for x in type.rep_type %}
-                                <option> {{x}} </option>
+                                <option value> {{x}} </option>
                             {% endfor %}
                         {% endfor %}
                         </select>
@@ -72,14 +72,14 @@
                         <div class="switch">
                             <label>
                                 No
-                                <input type="checkbox">
+                                <input id="vegan" type="checkbox">
                                 <span class="lever"></span>
                                 Yes
                             </label>
                         </div>
                     </div>
                     <div class="col s8 push-s6">
-                        <a class="waves-effect waves-light btn"><i class="material-icons right">search</i>Find</a>
+                        <a class="waves-effect waves-light btn" href="/find_recipes"><i class="material-icons right">search</i>Find</a>
                     </div>
                 </div>
             </form>
