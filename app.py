@@ -1,5 +1,6 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for
+from datetime import datetime
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
@@ -56,6 +57,39 @@ def dislike(rep_id):
                 'rating.1' : value
             }   
     })
+    return redirect(url_for('get_recipes'))
+
+
+@app.route("/upload_recipe", methods=["POST", "GET"])
+def upload():
+    recipe_name = request.form.get("rep_name")
+    recipe_country = request.form.get("rep_country")
+    recipe_type = request.form.get("rep_type")
+    recipe_vegan = request.form.get("rep_vegan")
+    recipe_description = request.form.get("rep_description")
+    recipe_url = request.form.get("rep_url")
+    recipe_tools = request.form.get("rep_tool")
+    recipe_igd = request.form.get("rep_igd")
+    recipe_steps = request.form.get("rep_step")
+    recipe_author = request.form.get("rep_author")
+    time = datetime.now()
+    date = time.strftime("%d/%m/%Y")
+    new_recipe= {
+        "name" : recipe_name,
+        "description": recipe_description,
+        "tools":[recipe_tools],
+        "ingredients": [recipe_igd],
+        "steps":[recipe_steps],
+        "country" :[recipe_country],
+        "types":[recipe_type],
+        "vegan":recipe_vegan,
+        "rating":["0","0"],
+        "url":recipe_url,
+        "author":recipe_author,
+        "upload_date":date
+    }
+    recipes = mongo.db.recipes
+    recipes.insert_one(new_recipe)
     return redirect(url_for('get_recipes'))
 
 

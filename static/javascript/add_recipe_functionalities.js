@@ -7,6 +7,15 @@ document.getElementById('add-step-add').addEventListener('click', function(){
     referenceNode=document.getElementById('add-step-add')
     document.getElementById('add-steps-section').insertBefore(newInput, referenceNode);
 })
+document.getElementById('add-country-add').addEventListener('click', function(){
+    newInput=document.createElement('input');
+    newInput.setAttribute('placeholder', 'Where else?');
+    newInput.setAttribute('type', 'text');
+    newInput.setAttribute('class', 'validate');
+    newInput.setAttribute('name', 'rep_country');
+    referenceNode=document.getElementById('add-country-add')
+    document.getElementById('add-country-section').insertBefore(newInput, referenceNode);
+})
 document.getElementById('add-tool-add').addEventListener('click', function(){
     newInput=document.createElement('input');
     newInput.setAttribute('placeholder', 'Add a tool');
@@ -52,6 +61,17 @@ document.getElementById('add-tool-del').addEventListener('click', function(){
 document.getElementById('add-ingredient-del').addEventListener('click', function(){
     referenceNode=document.getElementById('add-ingredient-add')
     list=document.getElementById('add-ingredients-section').childNodes
+    console.log(list)
+    console.log(list.length)
+    if (list.length > 9)
+        {
+            list[list.length-5].remove()
+    }else {alert('Cannot to delete the intial field')}
+    
+})
+document.getElementById('add-country-del').addEventListener('click', function(){
+    referenceNode=document.getElementById('add-country-add')
+    list=document.getElementById('add-country-section').childNodes
     console.log(list)
     console.log(list.length)
     if (list.length > 9)
