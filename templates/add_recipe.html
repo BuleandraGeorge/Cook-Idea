@@ -11,7 +11,7 @@
                             <div class="card blue-grey darken-1">
                                 <div class="card-content input-field white-text">
                                     <span class="card-title">Recipe Name</span>
-                                    <input placeholder="What's the name of the recipe" id="recipe_name" type="text" class="validate">
+                                    <input placeholder="What's the name of the recipe" id="recipe_name" name="rep_name" type="text" class="validate">
                                 </div>
                             </div>
                         </div>
@@ -21,7 +21,7 @@
                             <div class="card blue-grey darken-1 ">
                                 <div class="card-content input-field white-text">
                                     <span class="card-title">Origin</span>
-                                    <input placeholder="Where comes from the recipe?" id="recipe_country" type="text" class="validate">
+                                    <input placeholder="Where comes from the recipe?" id="recipe_country" name="rep_country"  type="text" class="validate">
                                 </div>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                             <div class="blue-grey darken-1 card">
                                 <div class="card-content input-field white-text">
                                     <span class="card-title">Type</span>
-                                    <input placeholder="Which kind of dish?" id="recipe_type" type="text" class="validate">
+                                    <input placeholder="Which kind of dish?" id="recipe_type" name="rep_type" type="text" class="validate">
                                 </div>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                                     <span class="card-title">Vegan</span>
                                     <label>
                                         No
-                                        <input  type="checkbox">
+                                        <input name="rep_vegan"  type="checkbox">
                                         <span class="lever"></span>
                                         Yes
                                     </label>
@@ -52,15 +52,15 @@
                             <div class="card blue-grey darken-1">
                                 <div class="card-content input-field white-text">
                                         <span class="card-title">Description</span>
-          			                    <input placeholder="A brief description of the recipe?" id="recipe_description" type="text" class="validate">
+          			                    <input placeholder="A brief description of the recipe?" id="recipe_description" name="rep_dspt" type="text" class="validate">
                                 </div>
                             </div>
                         </div>
                         <div class="col s12 m5">
                             <div class="card blue-grey darken-1">
                                 <div class="card-content input-field white-text">
-                                        <span class="card-title">Recipe Photo</span>
-          			                    <input placeholder="Insert the url of the picture" id="recipe_url" type="text" class="validate">
+                                        <span class="card-title">Recipe URL Photo</span>
+          			                    <input placeholder="eg:https://media.gettyimages.com/photos/..." id="recipe_url" name="rep_url" type="text" class="validate">
                                 </div>
                             </div>
                         </div>
@@ -70,8 +70,9 @@
                             <div class="card blue-grey darken-1">
                                 <div class="card-content input-field white-text" id="add-tools-section">
                                         <span class="card-title">Tools</span>
-          			                    <input placeholder="What plates or pans are need it?" id="recipe_tools" type="text" class="validate">
-                                        <a id="add-tool-add" class="btn-floating btn-large waves-effect waves-light blue right"><i class="material-icons">add</i></a>
+          			                    <input placeholder="What plates or pans are need it?" id="recipe_tools" name="rep_tool" type="text" class="validate">
+                                        <a id="add-tool-add" class="btn-floating btn-large waves-effect waves-light blue left"><i class="material-icons">add</i></a>
+                                        <a id="add-tool-del" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">delete</i></a>
                                 </div>
                             </div>
                         </div>
@@ -79,8 +80,9 @@
                             <div class="card blue-grey darken-1">
                                 <div class="card-content input-field white-text" id="add-ingredients-section">
                                         <span class="card-title">Ingredients</span>
-          			                    <input placeholder="What ingredients are need it?" id="initial_ingredient" type="text" class="validate">
-                                        <a id="add-ingredient-add" class="btn-floating btn-large waves-effect waves-light blue right"><i class="material-icons">add</i></a>
+          			                    <input placeholder="What ingredients are need it?" id="initial_ingredient" name="rep_igd" type="text" class="validate">
+                                        <a id="add-ingredient-add" class="btn-floating btn-large waves-effect waves-light blue left"><i class="material-icons">add</i></a>
+                                        <a id="add-ingredient-del" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">delete</i></a>
                                 </div>
                             </div>
                         </div>
@@ -90,8 +92,9 @@
                             <div class="card blue-grey darken-1">
                                 <div id="add-steps-section" class="card-content input-field  white-text">
                                     <span class="card-title">Which are the steps?</span>
-                                    <input placeholder="What's the first step" id="initial_step" type="text" class="validate">
-                                    <a id="add-step-add" class="btn-floating btn-large waves-effect waves-light blue right"><i class="material-icons">add</i></a>
+                                    <input placeholder="What's the first step" id="initial_step" name="rep_step" type="text" class="validate">
+                                    <a id="add-step-add" class="btn-floating btn-large waves-effect waves-light blue left"><i class="material-icons">add</i></a>
+                                    <a id="add-step-del" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">delete</i></a>
                                 </div>
                             </div>
                         </div>

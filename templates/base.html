@@ -38,30 +38,28 @@
     </header>
     <div class="row">
      <div class="col s2">
-            <form action="{{url_for('display_recipes')}}">
+            <form action="#">
                 <div class="row blue lighten-5">
                     <div class="col s12"><h5>Search</h5></div>
                     <div class="input-field col s12">
-                                <input placeholder="Name of the recipe" id="search_name" type="text" class="validate"><br>
+                                <input placeholder="Name of the recipe" name="search_name" type="text" class="validate"><br>
                                 <label for="search_name" class="active">Name</label>
                     </div>
                     <div class="col s12 input-field">
-                     <select id="zones" multiple>
-                        <option value="" selected>Any</option>
+                     <select name="zones" multiple>
                         {% for area in zones %}
                             {% for x in area.zone %}
-                                <option> {{x}} </option>
+                                <option name="zones" value="{{x}}" > {{x}} </option>
                             {% endfor %}
                         {% endfor %}
                         </select>
                         <label>Select a country</label>
                     </div>
                     <div class="col s12 input-field">
-                     <select id="types" multiple>
-                        <option value="" selected>Any</option>
+                     <select name="types" multiple>
                         {% for type in types %}
                             {% for x in type.rep_type %}
-                                <option value> {{x}} </option>
+                                <option name="types" value="{{x}}"> {{x}} </option>
                             {% endfor %}
                         {% endfor %}
                         </select>
@@ -72,14 +70,14 @@
                         <div class="switch">
                             <label>
                                 No
-                                <input id="vegan" type="checkbox">
+                                <input id="vegan" name="vegan" type="checkbox">
                                 <span class="lever"></span>
                                 Yes
                             </label>
                         </div>
                     </div>
                     <div class="col s8 push-s6">
-                        <a class="waves-effect waves-light btn" href="/find_recipes"><i class="material-icons right">search</i>Find</a>
+                        <button class="waves-effect waves-light btn" href="/find_recipes" ><i class="material-icons right">search</i>Find</button>
                     </div>
                 </div>
             </form>
