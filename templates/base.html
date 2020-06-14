@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="static/css/style.css" rel="stylesheet">
 </head>
-<body>
+<body class="">
         <div class="overlay-layer-delete" id="delete-modal-msg">
             <div class="modal-layer-delete blue lighten-5">
                 <div class="row">
@@ -58,7 +58,7 @@
                     <div class="col s12 input-field">
                      <select name="types" multiple>
                         {% for type in types %}
-                            {% for x in type.rep_type %}
+                            {% for x in dish_type.rep_type %}
                                 <option name="types" value="{{x}}"> {{x}} </option>
                             {% endfor %}
                         {% endfor %}
@@ -82,7 +82,7 @@
                 </div>
             </form>
         </div>
-        <div class="col s8">
+        <div class="col s8 ">
             {% block content %}
             {% endblock %}
         </div>

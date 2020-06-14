@@ -33,3 +33,10 @@
     border-radius:0.4rem;
     padding:1rem;
 }
+.add-recipe{
+    margin:2rem 0 0 2rem;
+    font-size:32px !important;
+}
+.smoke-bg{
+    background-color:rgba(0,0,0,0.5)
+}

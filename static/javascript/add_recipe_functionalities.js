@@ -1,3 +1,12 @@
+document.getElementById('add-type-add').addEventListener('click', function(){
+    newInput=document.createElement('input');
+    newInput.setAttribute('placeholder', 'Next type');
+    newInput.setAttribute('type', 'text');
+    newInput.setAttribute('class', 'validate');
+    newInput.setAttribute('name', 'rep_type');
+    referenceNode=document.getElementById('add-type-add')
+    document.getElementById('add-type-section').insertBefore(newInput, referenceNode);
+})
 document.getElementById('add-step-add').addEventListener('click', function(){
     newInput=document.createElement('input');
     newInput.setAttribute('placeholder', 'Which\'s next step?');
@@ -72,6 +81,17 @@ document.getElementById('add-ingredient-del').addEventListener('click', function
 document.getElementById('add-country-del').addEventListener('click', function(){
     referenceNode=document.getElementById('add-country-add')
     list=document.getElementById('add-country-section').childNodes
+    console.log(list)
+    console.log(list.length)
+    if (list.length > 9)
+        {
+            list[list.length-5].remove()
+    }else {alert('Cannot to delete the intial field')}
+    
+})
+document.getElementById('add-type-del').addEventListener('click', function(){
+    referenceNode=document.getElementById('add-type-add')
+    list=document.getElementById('add-type-section').childNodes
     console.log(list)
     console.log(list.length)
     if (list.length > 9)
