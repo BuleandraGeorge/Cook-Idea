@@ -1,0 +1,76 @@
+{% extends 'recipe_list.html' %}
+{% block modal %}
+<div id="modal1" class="modal">
+                    <div class="modal-content">
+                        <h4 id="recipe-name" class="cap-text">{{recipe.name}}</h4>
+                                <div class="row">
+                                    <div class="card">
+                                        <div class="col s12">
+                                            <div class="card-image">
+                                                <img src="{{recipe.url}}">
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </div>
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <div class="card">
+                                                    <span class="card-title margin-1rem-left">Description</span>
+                                                    <div class="card-content cap-text">
+                                                        <p id="recipe-description">{{recipe.description}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s6">
+                                                <div class="card">
+                                                    <span class="card-title margin-1rem-left">Tools</span>
+                                                    <div class="card-content">
+                                                        {% for tool in recipe.tools %}
+                                                                <p class="cap-text recipe-tool">{{tool}}</p>
+                                                            {% endfor %}
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col s6">
+                                                <div class="card">
+                                                    <span class="card-title margin-1rem-left">Ingredients</span>
+                                                    <div class="card-content">
+                                                        {% for ingredient in recipe.ingredients %}
+                                                            <p class="cap-text recipe-ingredient">{{ingredient}}</p>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <div class="card">
+                                                    <span class="card-title margin-1rem-left">Steps</span>
+                                                    <div class="card-content">
+                                                        {% for step in recipe.steps %}
+                                                            <p class="cap-text recipe-step">{{step}}</p>
+                                                            {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                    </div>
+                    <div id="details-footer" class="modal-footer">
+                            <div class="row">
+                                <div class="col s2 "><a class="btn-floating waves-effect waves-light red" href="{{url_for('like', rep_id=recipe._id)}}"><i class="material-icons">sentiment_very_satisfied</i></a>{{recipe.rating[0]}}</div>
+                                <div class="col s3"><a class="btn-floating waves-effect waves-light green" href="{{url_for('dislike', rep_id=recipe._id)}}"><i class="material-icons">sentiment_very_dissatisfied</i></a>{{recipe.rating[1]}}</div>
+                                <div id="edit-button" class="col s2"><i class="material-icons">edit</i></div>
+                                <div id="delete-recipe-btn" class="col s2"><i class="material-icons">delete</i></div>
+                                <div class="col s2"><a href="#!" class="modal-close"><i class="material-icons">close</i></a></div>
+                            </div>    
+                    </div>
+                    <div id="edit-footer" class="modal-footer">
+                            <div class="row">
+                                <div class="col s3"><a href="#!" class="waves-effect waves-light  btn-small modal-close"><i class="material-icons left">check</i>Confirm</a></div>
+                                <div class="col s2 push-s5"><a href="recipe_list.html" class="waves-effect red darken-1  btn-small modal-close"><i class="material-icons left">cancel</i>Cancel</a></div>
+                            </div>    
+                    </div>
+                </div>  
+{% endblock %}

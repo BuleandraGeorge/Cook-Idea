@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-    <form action="{{url_for('update')}}" method="POST">
+    <form action="{{url_for('update', rep_ip = recipe._id)}}" method="POST">
     <div class="col s12 ">
         <div class="card horizontal">
             <div class="card-stacked">
