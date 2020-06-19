@@ -8,20 +8,10 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="static/css/style.css" rel="stylesheet">
 </head>
-<body class="">
-        <div class="overlay-layer-delete" id="delete-modal-msg">
-            <div class="modal-layer-delete blue lighten-5">
-                <div class="row">
-                    <div class="col s12">
-                        <h5 class="center-align">Delete current recipe?</h5>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s6" id="confirm-btn"><a class="waves-effect waves-light red darken-1 btn-small"><i class="material-icons left">check</i>Confirm</a></div>
-                    <div class="col s6 push-s2" id="cancel-btn"><a class="waves-effect waves-light btn-small"><i class="material-icons left">cancel</i>Cancel</a></div>
-                </div>
-            </div>
-        </div>
+<body>
+      
+        {% block modal %}
+        {% endblock %}
     <header>
         <div class="row">
             <div class="col m6">
@@ -30,15 +20,15 @@
             <div class="col m6">
                 <div class="row">
                     <div class="col m4"><a href="/">Home</a></div>
-                    <div class="col m4"><a href='add_recipe.html'>Add Recipe</a></div>
+                    <div class="col m4"><a href="{{url_for('add_recipe')}}">Add Recipe</a></div>
                     <div class="col m4">About Us</div>
                 </div>
             </div>
         </div> 
     </header>
-    <div class="row">
+    <div class="row"> <!---Seach Side-->
      <div class="col s2">
-            <form action="#">
+            <form action="/find_recipes" method="POST">
                 <div class="row blue lighten-5">
                     <div class="col s12"><h5>Search</h5></div>
                     <div class="input-field col s12">
@@ -47,9 +37,12 @@
                     </div>
                     <div class="col s12 input-field">
                      <select name="zones" multiple>
+                     <option value="World wide" disabled selected>World wide</option>
                         {% for area in zones %}
                             {% for x in area.zone %}
+                                {% if x != "world wide" %}
                                 <option name="zones" value="{{x}}" > {{x}} </option>
+                                {% endif %}
                             {% endfor %}
                         {% endfor %}
                         </select>
@@ -57,9 +50,12 @@
                     </div>
                     <div class="col s12 input-field">
                      <select name="types" multiple>
+                     <option value="Any" disabled selected>Any</option>
                         {% for type in types %}
-                            {% for x in dish_type.rep_type %}
+                            {% for x in type.rep_type %}
+                                {% if x != "any"  %}
                                 <option name="types" value="{{x}}"> {{x}} </option>
+                                {% endif %}
                             {% endfor %}
                         {% endfor %}
                         </select>
@@ -70,23 +66,23 @@
                         <div class="switch">
                             <label>
                                 No
-                                <input id="vegan" name="vegan" type="checkbox">
+                                <input id="vegan" name="vegan_search" type="checkbox">
                                 <span class="lever"></span>
                                 Yes
                             </label>
                         </div>
                     </div>
                     <div class="col s8 push-s6">
-                        <button class="waves-effect waves-light btn" href="/find_recipes" ><i class="material-icons right">search</i>Find</button>
+                        <button class="waves-effect waves-light btn" ><i class="material-icons right">search</i>Find</button>
                     </div>
                 </div>
             </form>
         </div>
-        <div class="col s8 ">
+        <div class="col s8 "> <!---Feed Side-->
             {% block content %}
             {% endblock %}
         </div>
-        <div class="col s2">
+        <div class="col s2"><!--Chat side-->
             <div class="card">
                 <span class="card-title">Chat</span>
                 <div class="card-content">

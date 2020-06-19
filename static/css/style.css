@@ -1,12 +1,12 @@
+body{
+    text-transform: capitalize;
+}
 .modal{
     width:80%;
     height:80%;
 }
 .margin-1rem-left{
     margin-left:1rem;
-}
-.cap-text{
-    text-transform: capitalize;
 }
 #edit-footer{
     display:none;
