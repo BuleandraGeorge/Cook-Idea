@@ -9,27 +9,22 @@
     <link href="static/css/style.css" rel="stylesheet">
 </head>
 <body>
-      
-        {% block modal %}
-        {% endblock %}
     <header>
-        <div class="row">
-            <div class="col m6">
-            <h1>Cook Book</h1>
-            </div>
-            <div class="col m6">
-                <div class="row">
-                    <div class="col m4"><a href="/">Home</a></div>
-                    <div class="col m4"><a href="{{url_for('add_recipe')}}">Add Recipe</a></div>
-                    <div class="col m4">About Us</div>
-                </div>
-            </div>
-        </div> 
+    <nav>
+    <div class="nav-wrapper grey lighten-1">
+      <a href="/" class="brand-logo"><i class="large material-icons">restaurant_menu</i>COOK BOOK</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/"><i class="material-icons">home</i></a></li>
+        <li><a href="{{url_for('add_recipe')}}"><i class="large material-icons">add</i></a></li>
+        <li><a href="#"><i class="large material-icons">info</i></a></li>
+      </ul>
+    </div>
+  </nav>
     </header>
     <div class="row"> <!---Seach Side-->
-     <div class="col s2">
+     <div class="col s2 fixed-seach-box white-text">
             <form action="/find_recipes" method="POST">
-                <div class="row blue lighten-5">
+                <div class="row smoke-bg">
                     <div class="col s12"><h5>Search</h5></div>
                     <div class="input-field col s12">
                                 <input placeholder="Name of the recipe" name="search_name" type="text" class="validate"><br>
@@ -73,27 +68,15 @@
                         </div>
                     </div>
                     <div class="col s8 push-s6">
-                        <button class="waves-effect waves-light btn" ><i class="material-icons right">search</i>Find</button>
+                        <button class="waves-effect grey lighten-1 btn" ><i class="material-icons right">search</i>Find</button>
                     </div>
                 </div>
             </form>
         </div>
-        <div class="col s8 "> <!---Feed Side-->
+        <div class="col s10  fixed-recipe-feed "> <!---Feed Side-->
+            <div class="scroll-able smoke-bg">
             {% block content %}
             {% endblock %}
-        </div>
-        <div class="col s2"><!--Chat side-->
-            <div class="card">
-                <span class="card-title">Chat</span>
-                <div class="card-content">
-                    <div class="card">
-                        <p>Nickname</p>
-                        <p>This will be a message</p>
-                    </div> 
-                </div>
-                <div class="card">
-                        <p>Here will be the input for text and send button</p>      
-                </div>
             </div>
         </div>
     </div>

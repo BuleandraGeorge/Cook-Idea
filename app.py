@@ -80,7 +80,12 @@ def display_recipes():
 
 @app.route("/add_recipe")
 def add_recipe():
-    return render_template('add_recipe.html')
+    return render_template('add_recipe.html',zones=mongo.db.country.find(), types=mongo.db.dish_types.find())
+
+
+@app.route("/recipe_details/<rep_id>")
+def rep_details(rep_id):
+    return render_template('recipe_details.html', recipe=mongo.db.recipes.find_one({'_id': ObjectId(rep_id)}))
 
 
 @app.route("/insert_recipe", methods=["POST", "GET"])
@@ -89,11 +94,14 @@ def add():
         recipe_name = request.form.get("rep_name").lower()
         recipe_country = request.form.getlist("rep_country")
         recipe_type = request.form.getlist("rep_type")
-        recipe_vegan = request.form.get("rep_vegan")
+        recipe_vegan = request.form.getlist("rep_vegan")
+        recipe_country.append('world wide')
+        recipe_type.append('any')
         if not recipe_vegan:
-            recipe_vegan = "no"
+            recipe_vegan.append('no')
+            recipe_vegan.append('yes')
         else:
-            recipe_vegan = "yes"
+            recipe_vegan.append('yes')
 
         recipe_description = request.form.get("rep_description").lower()
         recipe_url = request.form.get("rep_url")
@@ -113,8 +121,8 @@ def add():
                     "tools": recipe_tools,
                     "ingredients": recipe_igd,
                     "steps": recipe_steps,
-                    "country": ('any', recipe_country),
-                    "types": ('any', recipe_type),
+                    "country": recipe_country,
+                    "types": recipe_type,
                     "vegan": recipe_vegan,
                     "rating": ["0", "0"],
                     "url": recipe_url,
@@ -145,11 +153,11 @@ def add():
         return redirect(url_for('get_recipes'))
 
 
-@app.route('/edit_recipe.html/<rep_id>')
+@app.route('/edit_recipe/<rep_id>')
 def edit(rep_id):
     recipes = mongo.db.recipes
     recipe = recipes.find_one({'_id': ObjectId(rep_id)})
-    return render_template('edit_recipe.html', recipe=recipe)
+    return render_template('edit_recipe.html', recipe=recipe, zones=mongo.db.country.find(), types=mongo.db.dish_types.find())
 
 
 @app.route('/upload/<rep_id>', methods=["POST", "GET"])
@@ -159,11 +167,15 @@ def upload(rep_id):
         recipe_name = request.form.get("rep_name").lower()
         recipe_country = request.form.getlist("rep_country")
         recipe_type = request.form.getlist("rep_type")
-        recipe_vegan = request.form.get("rep_vegan")
+        recipe_vegan = request.form.getlist("rep_vegan")
+        recipe_country.append('world wide')
+        recipe_type.append('any')
         if not recipe_vegan:
-            recipe_vegan = "no"
+            recipe_vegan.append('no')
+            recipe_vegan.append('yes')
         else:
-            recipe_vegan = "yes"
+            recipe_vegan.append('yes')
+
         recipe_description = request.form.get("rep_description").lower()
         recipe_url = request.form.get("rep_url")
         recipe_tools = request.form.getlist("rep_tool")
@@ -183,8 +195,8 @@ def upload(rep_id):
                         "tools": recipe_tools,
                         "ingredients": recipe_igd,
                         "steps": recipe_steps,
-                        "country": ('any', recipe_country),
-                        "types": ('any', recipe_type),
+                        "country": recipe_country,
+                        "types": recipe_type,
                         "vegan": recipe_vegan,
                         "rating": ["0", "0"],
                         "url": recipe_url,
@@ -202,7 +214,7 @@ def upload(rep_id):
                                 }
                         })
 
-        coll_dish_type =  mongo.db.dish_types               
+        coll_dish_type = mongo.db.dish_types
         types = coll_dish_type.find_one()['rep_type']
         new_list = update_lists(types, recipe_type)
         coll_dish_type.update_one({}, {

@@ -1,106 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
-  <div class="overlay-layer-delete" id="delete-modal-msg">
-            <div class="modal-layer-delete blue lighten-5">
-                <div class="row">
-                    <div class="col s12">
-                        <h5 class="center-align">Delete current recipe?</h5>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s6" id="confirm-btn"><a class="waves-effect waves-light red darken-1 btn-small"><i class="material-icons left">check</i>Confirm</a></div>
-                    <div class="col s6 push-s2" id="cancel-btn"><a class="waves-effect waves-light btn-small"><i class="material-icons left">cancel</i>Cancel</a></div>
+        <div class="col s3 ">
+            <div class="card medium grey lighten-1">
+                <div class="card-content add-rep-btn-container ">
+                   <a class="btn-floating btn-large waves-effect waves-light deep-orange accent-3 add-recipe-btn" href="{{url_for('add_recipe')}}"><i class="material-icons">add</i></a>
                 </div>
             </div>
         </div>
-            {% for recipe in recipes %}
-            <div id="modal1" class="modal">
-                    <div class="modal-content">
-                        <h4 id="recipe-name" class="cap-text">{{recipe.name}}</h4>
-                                <div class="row">
-                                    <div class="card">
-                                        <div class="col s12">
-                                            <div class="card-image">
-                                                <img src="{{recipe.url}}">
-                                            </div>
-                                        </div> 
-                                    </div>
-                                </div>
-                                        <div class="row">
-                                            <div class="col s12">
-                                                <div class="card">
-                                                    <span class="card-title margin-1rem-left">Description</span>
-                                                    <div class="card-content cap-text">
-                                                        <p id="recipe-description">{{recipe.description}}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col s6">
-                                                <div class="card">
-                                                    <span class="card-title margin-1rem-left">Tools</span>
-                                                    <div class="card-content">
-                                                        {% for tool in recipe.tools %}
-                                                                <p class="cap-text recipe-tool">{{tool}}</p>
-                                                            {% endfor %}
-                                                        </div>
-                                                </div>
-                                            </div>
-                                            <div class="col s6">
-                                                <div class="card">
-                                                    <span class="card-title margin-1rem-left">Ingredients</span>
-                                                    <div class="card-content">
-                                                        {% for ingredient in recipe.ingredients %}
-                                                            <p class="cap-text recipe-ingredient">{{ingredient}}</p>
-                                                        {% endfor %}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col s12">
-                                                <div class="card">
-                                                    <span class="card-title margin-1rem-left">Steps</span>
-                                                    <div class="card-content">
-                                                        {% for step in recipe.steps %}
-                                                            <p class="cap-text recipe-step">{{step}}</p>
-                                                            {% endfor %}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                    </div>
-                    <div id="details-footer" class="modal-footer">
-                            <div class="row">
-                                <div class="col s2 "><a class="btn-floating waves-effect waves-light red" href="{{url_for('like', rep_id=recipe._id)}}"><i class="material-icons">sentiment_very_satisfied</i></a>{{recipe.rating[0]}}</div>
-                                <div class="col s3"><a class="btn-floating waves-effect waves-light green" href="{{url_for('dislike', rep_id=recipe._id)}}"><i class="material-icons">sentiment_very_dissatisfied</i></a>{{recipe.rating[1]}}</div>
-                                <div id="edit-button" class="col s2"><i class="material-icons">edit</i></div>
-                                <div id="delete-recipe-btn" class="col s2"><i class="material-icons">delete</i></div>
-                                <div class="col s2"><a href="#!" class="modal-close"><i class="material-icons">close</i></a></div>
-                            </div>    
-                    </div>
-                    <div id="edit-footer" class="modal-footer">
-                            <div class="row">
-                                <div class="col s3"><a href="#!" class="waves-effect waves-light  btn-small modal-close"><i class="material-icons left">check</i>Confirm</a></div>
-                                <div class="col s2 push-s5"><a href="recipe_list.html" class="waves-effect red darken-1  btn-small modal-close"><i class="material-icons left">cancel</i>Cancel</a></div>
-                            </div>    
-                    </div>
-                </div>   
-                <div class="col s4">
-                    <div class="card">
+            {% for recipe in recipes %} 
+                <div class="col s3 ">
+                    <div class="card medium grey lighten-1">
                         <div class="card-image">
                             <img class="recipe_img" src="{{recipe.url}}">
                             <span class="card-title cap-text"><span class="smoke-bg">{{recipe.name}}</span></span>
-                            <a class="btn-floating  halfway-fab waves-effect waves-light blue btn modal-trigger" href="#modal1"><i class="material-icons">info</i></a>
                         </div>
                         <div class="card-content">
-                            <p class="cap-text">{{recipe.description}}</p>
+                            <p class="cap-text truncate">{{recipe.description}}</p>
                         </div>
                         <div class="card-action">
                             <div class="row">
-                                <div class="col s6 "><a class="btn-floating waves-effect waves-light red" href="{{url_for('like', rep_id=recipe._id)}}"><i class="material-icons">sentiment_very_satisfied</i></a>{{recipe.rating[0]}}</div>
-                                <div class="col s6 push-s3"><a class="btn-floating waves-effect waves-light green" href="{{url_for('dislike', rep_id=recipe._id)}}"><i class="material-icons">sentiment_very_dissatisfied</i></a>{{recipe.rating[1]}}</div>
+                                <div class="col s4 "><a class="btn-floating waves-effect waves-light light-blue accent-3" href="{{url_for('like', rep_id=recipe._id)}}"><i class="material-icons">sentiment_very_satisfied</i></a>{{recipe.rating[0]}}</div>
+                                <div class="col s4 "><a class="btn-floating waves-effect waves-light lime accent-3" href="{{url_for('dislike', rep_id=recipe._id)}}"><i class="material-icons">sentiment_very_dissatisfied</i></a>{{recipe.rating[1]}}</div>
+                                <div class="col s4 "><a class="btn-floating waves-effect waves-light grey darken-1" href="{{url_for('rep_details', rep_id=recipe._id)}}"><i class="material-icons">info</i></a></div>
                             </div>    
                         </div>
                     </div>

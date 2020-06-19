@@ -1,9 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400&display=swap');
 body{
     text-transform: capitalize;
+    background-image:url('https://ksassets.timeincuk.net/wp/uploads/sites/56/2018/10/grey-kitchen-ideas-featured-image-920x552.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 200;
+
 }
-.modal{
-    width:80%;
-    height:80%;
+header{
+    position: fixed;
+    width:100vw;
+    z-index: +100;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
+}
+.fixed-seach-box{
+    position: fixed;
+    top:11vh;
+}
+.fixed-recipe-feed{
+    position: fixed;
+    z-index: 50;
+    height:88vh;
+    left:17vw !important;
+    top:11vh;
+}
+.scroll-able{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 95%;
+    height: 100%;
+    overflow: auto;
+}
+.scroll-able::-webkit-scrollbar {
+  display: none;
 }
 .margin-1rem-left{
     margin-left:1rem;
@@ -38,5 +70,29 @@ body{
     font-size:32px !important;
 }
 .smoke-bg{
-    background-color:rgba(0,0,0,0.5)
+    background-color:rgba(0,0,0,0.7);
+    border-radius:5px;
+    padding:5px;
+}
+.card.medium{
+    height:350px;
+}
+.card-image{
+    max-height: 48% !important;
+}
+.add-recipe-btn{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%)
+}
+.btn-floating.btn-large i {
+    line-height: 80px;
+}
+.btn-large i {
+    font-size: 3rem;
+}
+.btn-floating.btn-large {
+    width: 80px;
+    height: 80px;
 }
