@@ -45,7 +45,6 @@ def get_recipes():
 
 @app.route("/find_recipes", methods=["POST", "GET"])
 def display_recipes():
-    print("Before ifs")
     rep_name = request.form.get("search_name").lower()
     rep_zone = request.form.getlist("zones")
     rep_type = request.form.getlist("types")
@@ -254,6 +253,19 @@ def dislike(rep_id):
                 }
     })
     return redirect(url_for('get_recipes'))
+
+
+@app.route("/delete/<rep_id>")
+def delete(rep_id):
+    rep_coll = mongo.db.recipes
+    rep_coll.delete_one({'_id': ObjectId(rep_id)})
+    return redirect(url_for('get_recipes'))
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'), port=int(os.environ.get('PORT')), debug=True)

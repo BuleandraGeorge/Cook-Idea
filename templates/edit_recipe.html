@@ -4,14 +4,14 @@
     <div class="col s12 ">
         <div class="card horizontal smoke-bg">
             <div class="card-stacked">
-                <span class=" add-recipe card-title">Editing a new recipe</span>
+                <span class="add-recipe card-title white-text">Editing a new recipe</span>
                 <div class="card-content">
                     <div class="row">
                         <div class="col s12">
                             <div class="card grey lighten-1">
                                 <div class="card-content input-field">
-                                    <span class="card-title">{{recipe.name}}</span>
-                                    <input placeholder="What's the name of the recipe" id="recipe_name" name="rep_name" type="text" class="validate">
+                                    <span class="card-title">Recipe Name</span>
+                                    <input placeholder="What's the name of the recipe" id="recipe_name" name="rep_name" type="text" class="validate" value="{{recipe.name}}" required>
                                 </div>
                             </div>
                         </div>
@@ -23,7 +23,7 @@
                                     <span class="card-title">Origin</span>
                                     {% for zone in recipe.country %}
                                         {% if zone !="world wide" %}
-                                            <input placeholder="Where comes from the recipe?" id="recipe_country" name="rep_country"  type="text" class="validate" value="{{zone}}">
+                                            <input placeholder="Where comes from the recipe?" id="recipe_country" name="rep_country"  type="text" class="validate" value="{{zone}}" required>
                                         {% endif %}
                                     {% endfor %}
                                     <a id="add-country-add" class="btn-floating btn-medium waves-effect waves-light blue left"><i class="material-icons">add</i></a>
@@ -37,7 +37,7 @@
                                     <span class="card-title">Type</span>
                                     {% for type in recipe.types %}
                                         {% if type!="any" %}
-                                        <input placeholder="Which kind of dish?" id="recipe_type" name="rep_type" type="text" class="validate" value="{{type}}">
+                                        <input placeholder="Which kind of dish?" id="recipe_type" name="rep_type" type="text" class="validate" value="{{type}}" required>
                                         {% endif %}
                                     {% endfor %}
                                      <a id="add-type-add" class="btn-floating btn-medium waves-effect waves-light blue left"><i class="material-icons">add</i></a>
@@ -49,7 +49,7 @@
                             <div class="card grey lighten-1">
                                 <div class="card-content switch">
                                     <span class="card-title">Vegan</span>
-                                    {% if recipe.vegan == "yes" %}
+                                    {% if recipe.vegan.1 == "yes" %}
                                         <label>
                                             No
                                             <input name="rep_vegan"  type="checkbox" checked>
@@ -59,7 +59,7 @@
                                         {% else %}
                                             <label>
                                                 No
-                                                <input name="rep_vegan"  type="checkbox" checked>
+                                                <input name="rep_vegan"  type="checkbox">
                                                 <span class="lever"></span>
                                                 Yes
                                             </label>
@@ -73,7 +73,7 @@
                             <div class="card grey lighten-1">
                                 <div class="card-content input-field">
                                         <span class="card-title">Description</span>
-          			                    <input placeholder="A brief description of the recipe?" id="recipe_description" name="rep_description" type="text" class="validate" value="{{recipe.description}}">
+          			                    <input placeholder="A brief description of the recipe?" id="recipe_description" name="rep_description" type="text" class="validate" value="{{recipe.description}}" required>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                             <div class="card grey lighten-1">
                                 <div class="card-content input-field">
                                         <span class="card-title">URL Photo</span>
-          			                    <input placeholder="eg:https://media.gettyimages.com/photos/..." name="rep_url" type="text" class="validate" value="{{recipe.url}}">
+          			                    <input placeholder="eg:https://media.gettyimages.com/photos/..." name="rep_url" type="text" class="validate" value="{{recipe.url}}" required>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                                 <div class="card-content input-field" id="add-tools-section">
                                         <span class="card-title">Tools</span>
                                         {% for tool in recipe.tools %}
-          			                        <input placeholder="What plates or pans are need it?" id="recipe_tools" name="rep_tool" type="text" class="validate" value="{{tool}}">
+          			                        <input placeholder="What plates or pans are need it?" id="recipe_tools" name="rep_tool" type="text" class="validate" value="{{tool}}" required>
                                         {% endfor %}
                                         <a id="add-tool-add" class="btn-floating btn-medium waves-effect waves-light blue left"><i class="material-icons">add</i></a>
                                         <a id="add-tool-del" class="btn-floating btn-medium waves-effect waves-light red right"><i class="material-icons">delete</i></a>
@@ -104,7 +104,7 @@
                                 <div class="card-content input-field" id="add-ingredients-section">
                                         <span class="card-title">Ingredients</span>
                                         {% for ingredient in recipe.ingredients %}
-          			                        <input placeholder="What ingredients are need it?" id="initial_ingredient" name="rep_igd" type="text" class="validate" value="{{ingredient}}">
+          			                        <input placeholder="What ingredients are need it?" id="initial_ingredient" name="rep_igd" type="text" class="validate" value="{{ingredient}}" required>
                                         {% endfor %}
                                         <a id="add-ingredient-add" class="btn-floating btn-medium waves-effect waves-light blue left"><i class="material-icons">add</i></a>
                                         <a id="add-ingredient-del" class="btn-floating btn-medium waves-effect waves-light red right"><i class="material-icons">delete</i></a>
@@ -118,7 +118,7 @@
                                 <div id="add-steps-section" class="card-content input-field">
                                     <span class="card-title">Which are the steps?</span>
                                     {% for step in recipe.steps %}
-                                        <input placeholder="What's the first step" id="initial_step" name="rep_step" type="text" class="validate" value="{{step}}">
+                                        <input placeholder="What's the first step" id="initial_step" name="rep_step" type="text" class="validate" value="{{step}}" required>
                                     {% endfor %}
                                     <a id="add-step-add" class="btn-floating btn-medium waves-effect waves-light blue left"><i class="material-icons">add</i></a>
                                     <a id="add-step-del" class="btn-floating btn-medium waves-effect waves-light red right"><i class="material-icons">delete</i></a>
@@ -131,7 +131,7 @@
                             <div class="card grey lighten-1">
                                 <div class="card-content input-field">
                                     <span class="card-title">Author</span>
-                                    <input placeholder="Pick a nickname" id="recipe_author" name="rep_author" type="text" class="validate" value="{{recipe.author}}">
+                                    <input placeholder="Pick a nickname" id="recipe_author" name="rep_author" type="text" class="validate" value="{{recipe.author}}" required>
                                 </div>
                             </div>
                         </div>
@@ -139,7 +139,7 @@
                             <div class="card grey lighten-1">
                                 <div class="card-content input-field">
                                     <span class="card-title">Source</span>
-                                    <input placeholder="Url or Other" id="recipe_source" name="rep_source" type="text" class="validate" value="{{recipe.source}}">
+                                    <input placeholder="Url or Other" id="recipe_source" name="rep_source" type="text" class="validate" value="{{recipe.source}}" required>
                                 </div>
                             </div>
                         </div>

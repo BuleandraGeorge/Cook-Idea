@@ -75,7 +75,7 @@ header{
     padding:5px;
 }
 .card.medium{
-    height:350px;
+    height:300px;
 }
 .card-image{
     max-height: 48% !important;
@@ -95,4 +95,8 @@ header{
 .btn-floating.btn-large {
     width: 80px;
     height: 80px;
+}
+.max-sizes{
+    max-height: 250px;
+    max-width: 550px;
 }

@@ -48,55 +48,45 @@ document.getElementById('add-ingredient-add').addEventListener('click', function
 document.getElementById('add-step-del').addEventListener('click', function(){
     referenceNode=document.getElementById('add-step-add')
     list=document.getElementById('add-steps-section').childNodes
-    console.log(list)
-    console.log(list.length)
     if (list.length > 9)
         {
             list[list.length-5].remove()
-    }else {alert('Cannot to delete the intial field')}
+    }else {M.toast({html: 'Cannot Delete Initial field'})}
     
 })
 document.getElementById('add-tool-del').addEventListener('click', function(){
     referenceNode=document.getElementById('add-tool-add')
     list=document.getElementById('add-tools-section').childNodes
-    console.log(list)
-    console.log(list.length)
     if (list.length > 9)
         {
             list[list.length-5].remove()
-    }else {alert('Cannot to delete the intial field')}
+    }else {M.toast({html: 'Cannot Delete Initial field'})}
     
 })
 document.getElementById('add-ingredient-del').addEventListener('click', function(){
     referenceNode=document.getElementById('add-ingredient-add')
     list=document.getElementById('add-ingredients-section').childNodes
-    console.log(list)
-    console.log(list.length)
     if (list.length > 9)
         {
             list[list.length-5].remove()
-    }else {alert('Cannot to delete the intial field')}
+    }else {M.toast({html: 'Cannot Delete Initial field'})}
     
 })
 document.getElementById('add-country-del').addEventListener('click', function(){
     referenceNode=document.getElementById('add-country-add')
     list=document.getElementById('add-country-section').childNodes
-    console.log(list)
-    console.log(list.length)
     if (list.length > 9)
         {
             list[list.length-5].remove()
-    }else {alert('Cannot to delete the intial field')}
+    }else {M.toast({html: 'Cannot Delete Initial field'})}
     
 })
 document.getElementById('add-type-del').addEventListener('click', function(){
     referenceNode=document.getElementById('add-type-add')
     list=document.getElementById('add-type-section').childNodes
-    console.log(list)
-    console.log(list.length)
     if (list.length > 9)
         {
             list[list.length-5].remove()
-    }else {alert('Cannot to delete the intial field')}
+    }else {M.toast({html: 'Cannot Delete Initial field'})}
     
 })
