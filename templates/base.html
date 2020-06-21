@@ -8,21 +8,85 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
 </head>
+<ul id="slide-out" class="sidenav grey lighten-1">
+    <li>
+        <div class="user-view"><a href="/" class="sidenav-element"><h1>COOK BOOK</h1></a>
+            <div class="row">
+                <div class="col s4"><a class="sidenav-element" href="/"><i class="material-icons">home</i></a></div>
+                <div class="col s4"><a class="sidenav-element" href="{{url_for('add_recipe')}}"><i class="material-icons">add</i></a></div>
+                <div class="col s4"><a class="sidenav-element" href="{{url_for('about')}}"><i class="material-icons">info</i></a></div>
+            </div>
+        </div>
+    </li>
+    <li><form action="/find_recipes" method="POST">
+                <div class="row smoke-bg">
+                    <div class="col s12"><h5>Search</h5></div>
+                    <div class="input-field col s12">
+                                <input placeholder="Name of the recipe" name="search_name" type="text" class="validate"><br>
+                                <label for="search_name" class="active">Name</label>
+                    </div>
+                    <div class="col s12 input-field">
+                     <select name="zones" multiple>
+                     <option value="World wide" disabled selected>World wide</option>
+                        {% for area in zones %}
+                            {% for x in area.zone %}
+                                {% if x != "world wide" %}
+                                <option name="zones" value="{{x}}" > {{x}} </option>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                        </select>
+                        <label>Select a country</label>
+                    </div>
+                    <div class="col s12 input-field">
+                     <select name="types" multiple>
+                     <option value="Any" disabled selected>Any</option>
+                        {% for type in types %}
+                            {% for x in type.rep_type %}
+                                {% if x != "any"  %}
+                                <option name="types" value="{{x}}"> {{x}} </option>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                        </select>
+                        <label>Select a type</label>
+                    </div>
+                    <div class="col s12">
+                        <span>Vegan?</span>
+                        <div class="switch">
+                            <label>
+                                No
+                                <input id="vegan" name="vegan_search" type="checkbox">
+                                <span class="lever"></span>
+                                Yes
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col s8 push-s6">
+                        <button class="waves-effect grey lighten-1 btn" ><i class="material-icons right">search</i>Find</button>
+                    </div>
+                </div>
+            </form>
+    </li>
+  </ul>
+  
 <body>
     <header>
     <nav>
-    <div class="nav-wrapper grey lighten-1">
-      <a href="/" class="brand-logo">COOK BOOK<i class="large material-icons">restaurant_menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="/"><i class="material-icons">home</i></a></li>
-        <li><a href="{{url_for('add_recipe')}}"><i class="large material-icons">add</i></a></li>
-        <li><a href="{{url_for('about')}}"><i class="large material-icons">info</i></a></li>
-      </ul>
-    </div>
+        <div class="nav-wrapper grey lighten-1 ">
+        <a href="/" class="brand-logo">COOK BOOK<i class="material-icons hide-on-med-and-down">restaurant_menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="/"><i class="material-icons">home</i></a></li>
+            <li><a href="{{url_for('add_recipe')}}"><i class="large material-icons">add</i></a></li>
+            <li><a href="{{url_for('about')}}"><i class="large material-icons">info</i></a></li>
+        </ul>
+        <a href="#" data-target="slide-out" class="sidenav-trigger left"><i class="material-icons">menu</i></a>
+        </div>
   </nav>
+  
     </header>
     <div class="row"> <!---Seach Side-->
-     <div class="col s2 fixed-seach-box white-text">
+     <div class="col s2 fixed-seach-box white-text hide-on-med-and-down">
             <form action="/find_recipes" method="POST">
                 <div class="row smoke-bg">
                     <div class="col s12"><h5>Search</h5></div>
@@ -73,7 +137,7 @@
                 </div>
             </form>
         </div>
-        <div class="col s10  fixed-recipe-feed "> <!---Feed Side-->
+        <div class="col s12 l10  fixed-recipe-feed "> <!---Feed Side-->
             <div class="scroll-able smoke-bg">
             {% block content %}
             {% endblock %}
@@ -82,13 +146,13 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="{{url_for('static', filename='javascript/script.js')}}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
         $('.modal').modal();});
         $(document).ready(function(){
-        $('select').formSelect();
-  });
+        $('select').formSelect();});
+        $(document).ready(function(){
+        $('.sidenav').sidenav();});
     </script>
 </body>
 </html>    

@@ -23,13 +23,10 @@ header{
     position: fixed;
     z-index: 50;
     height:88vh;
-    left:17vw !important;
-    top:11vh;
+    top:8vh;
 }
 .scroll-able{
     position: absolute;
-    top:0;
-    left:0;
     width: 95%;
     height: 100%;
     overflow: auto;
@@ -99,4 +96,14 @@ header{
 .max-sizes{
     max-height: 250px;
     max-width: 550px;
+}
+.sidenav-element{
+    color:black !important;
+    text-decoration: none !important;
+}
+@media only screen and (min-width: 1024px){
+    .fixed-recipe-feed{
+        top:11vh;
+        left:17vw !important;
+    }
 }
