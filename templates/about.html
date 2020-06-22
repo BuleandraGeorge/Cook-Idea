@@ -6,6 +6,7 @@
             <div class="card medium grey lighten-1">
                 <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">Goal<i class="material-icons right">more_vert</i></span>
+                    <a class="btn-floating activator btn-large waves-effect waves-light yellow add-recipe-btn"><i class="material-icons">star</i></a>
                 </div>
                 <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4">Goal in depth<i class="material-icons right">close</i></span>
@@ -18,9 +19,10 @@
             <div class="card medium grey lighten-1">
                 <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">Do you want to get in to this?<i class="material-icons right">more_vert</i></span>
+                    <a class="btn-floating activator btn-large waves-effect waves-light red add-recipe-btn"><i class="material-icons">pan_tool</i></a>
                 </div>
                 <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">What you can do.<i class="material-icons right">close</i></span>
+                    <span class="card-title grey-text text-darken-4">What can you do?<i class="material-icons right">close</i></span>
                 <p>If you want to help us to achieve our goal just add a recipe that you find you worthy to share with others</p>
                 </div>
             </div>
@@ -29,6 +31,7 @@
             <div class="card medium grey lighten-1">
                 <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">How is works?<i class="material-icons right">more_vert</i></span>
+                    <a class="btn-floating activator btn-large waves-effect waves-light blue add-recipe-btn"><i class="material-icons">help</i></a>
                 </div>
                 <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4">Simple!<i class="material-icons right">close</i></span>
@@ -42,6 +45,7 @@
             <div class="card medium grey lighten-1">
                 <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">Who we are or I am?<i class="material-icons right">more_vert</i></span>
+                    <a class="btn-floating activator btn-large waves-effect waves-light indigo add-recipe-btn"><i class="material-icons">person</i></a>
                 </div>
                 <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4">My name is George<i class="material-icons right">close</i></span>
@@ -55,6 +59,7 @@
         <div class="col s12 m6 l4">
             <div class="card medium grey lighten-1">
                 <div class="card-content">
+                <a class="btn-floating activator btn-large waves-effect waves-light green add-recipe-btn"><i class="material-icons">question_answer</i></a>
                     <span class="card-title activator grey-text text-darken-4">Contact<i class="material-icons right">more_vert</i></span>
                 </div>
                 <div class="card-reveal">
@@ -63,12 +68,40 @@
                     <p>Have you find an issue?</p>
                     <p>Do you have an idea that it's worthy to implement?</p>
                     <p>Let me now! By filling the form</p>
+                    <div class="row smoke-bg">
+                        <form action="/comment" method="POST" class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                <input placeholder="Your name or a nickname" name="name" id="first_name" type="text" class="validate">
+                                <label for="first_name">First Name</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                <input placeholder="To know where to thank you" name="email" id="email" type="email" class="validate">
+                                <label for="email">Email</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="input-field">
+                                        <textarea placeholder="Your comment matters" name="comment" id="textarea2" class="materialize-textarea" data-length="120"></textarea>
+                                        <label for="textarea2">Your comment</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn waves-effect waves-light grey right" type="submit" name="action">Submit
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col s12 m6 l4">
             <div class="card medium grey lighten-1">
                 <div class="card-content">
+                    <a class="btn-floating activator btn-large waves-effect waves-light yellow add-recipe-btn"><i class="material-icons">show_chart</i></a>
                     <span class="card-title activator grey-text text-darken-4">Future updates<i class="material-icons right">more_vert</i></span>
                 </div>
                 <div class="card-reveal">

@@ -267,5 +267,21 @@ def about():
     return render_template('about.html')
 
 
+@app.route('/comment', methods=["POST", "GET"])
+def comment():
+    coll_com = mongo.db.comments
+    if request.method == "POST":
+        name = request.form.get('name')
+        email = request.form.get('email')
+        comment = request.form.get('comment')
+        new_comment = {
+            "name": name,
+            "email": email,
+            "comment": comment
+        }
+        coll_com.insert_one(new_comment)
+    return redirect(url_for('about'))
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'), port=int(os.environ.get('PORT')), debug=True)
