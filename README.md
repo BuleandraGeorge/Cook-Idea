@@ -1,39 +1,118 @@
-<img src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png" style="margin: 0;">
+<h1 style="text-align: center">COOK BOOK</h1>
 
-Welcome BuleandraGeorge,
+<p>The goal of the project is to create a website based on a data base that executes CRUD operation on data base.</p>
+<p>The goal of the website is create a huge data base with recipes from all around the word where everyone can look for a recipe or upload one.</p>
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project.
 
-## Gitpod Reminders
+<h2>UX</h2>
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+<p>The website is made for everyone who want to find recipes from all around the word and wants to share his cooking knowladge with others.</p>
+<p>Through this website the user can view the collection of recipes from data base on landing page, can search by name, country, type or if is suitable for vegan due to the search box.</p>
+<p>The recipes are displayed as card with 3 buttons wherewith user can like or dislike the recipe and to view the recipe in details.</p>
+<p>Details page offers details in deep about recipe and the possibility to perform action on the recipe like edit, delete and like/dislike the recipe.</p>
+<p>The add page offers the possibility to insert a new recipe through the form provided where user can set a name, photo, a description, the origin of the recipe, type, ingredients need it, cooking steps, tools, the source and if is suitable for vegans.<p>
+<p>The edit page has same structure as add page the difference is that the fields are auto filled with the details of the current recipe and updates the current recipe instead of creating a new one.</p>
+<p>About page offers couple details about the porpouse of the website, features, developer, offer the possibility to send ideas of improvement and feedback through the form provided and details about updates that are comming up.</p>
 
-`python3 -m http.server`
+<h2>Features</h2>
 
-A blue button should appear to click: *Make Public*,
+<h3>Existing Features</h3>
+<ol>
+    <li>CRUD operation</li>
+    <li>Optimized for Search</li>
+    <li>Easy to Use</li>
+    <li>Responsive Web Design</li>
+</ol>
+<h4>1 - CRUD operation</h4>
+<p>User can:</p>
+<ul>
+<li> create a recipe by filling the form from add recipe page</li>
+<li> view the collection of recipes by visiting the lading page</li>
+<li> edit a recipe by pressing edit button from recipe details page</li>
+<li> delete a recipe by pressing the delete button from recipe details page</li>
+</ul>
 
-Another blue button should appear to click: *Open Browser*.
+<h4>2 Responsive Web Design</h4>
+<p>The website is builded to meet the requirements of nowadays displaying devices:</p>
+<ul>
+<li>it is responsive for mobile phone, table and desktop</li>
+<li>it has a simplified design for mobile phone user due to the side navigation where user can search or go on different webpages </li>
+</ul>
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+<h3>Features Left to Implement</h3> 
+<ul>
+    <li>Comment section for every recipe</li>
+    <li>A forum where users can discus topic opened by them</li>
+    <li>A side chat where users can have chats with other visitors of webpage</li>
+    <li>A shop where users can buy cooking tools like pans, plates etc</li>
+</ul>
 
-A blue button should appear to click: *Make Public*,
+<h2>Technologies Used</h2> 
+<ol>
+    <li>Html and Css: for creating the structure and the design of webpage</li>
+    <li>JavaScript: for DOM manipulation</li>
+    <li>Python, Flask Framework: for creating a reliable, scalable, and maintainable web application and for performing CRUD operation on database </li>
+    <li>Materializecss: for design</li>
+</ol>
 
-Another blue button should appear to click: *Open Browser*.
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the backend lessons.
+<h2>Testing</h2>
+<p>The webpage use forms for search, editing and inserting recipes in database</p>
+<p>To test:</p>
+<ol>
+    <li>Search form:
+        <ul>
+            <li>I tried to submit empty form and check if displays all recipes as intended</li>
+            <li>I tried to search separately by name, country, type, suitable for vegans</li>
+            <li>I tried to search same by name, country, type, suitable for vegans and check if displays the recipes with characteristics provided</li>
+        </ul>
+    </li>
+    <li>Edit and Add form:
+        <ul>
+            <li>I tried to submit empty form and verify that an error message about the required fields appears.</li>
+            <li>Try to submit the form with all inputs valid and verify that a success message appears.</li>
+        </ul>
+    </li>
+    <li>Responsive:
+        <ul>
+            <li>By using Google Chrome Developer Tools to test the look and the functionability on Iphone X as sizemark for mobile, Ipad for table and my monitor resolution (1337x768) for desktop view</li>
+        </ul>
+    </li>
+</ol>
+<p>Problems:</p>
+<ol>
+    <li>Search form:
+        <ul>
+            <li>Trying to iterate 2 times throughout the fields of a document in the same template I found out it doesn't work. That means that it iterates just one time throughout the document and second time it will get nothing from the document's fields, so I decided for the search box for desktop views to let the user to insert freely the country and the type of recipe instead of selecting from existing list of types and countries as on mobile</li>
+        </ul>
+    </li>
+</ol>
 
-## Updates Since The Instructional Video
 
-We continually tweak and adjust this template to help give you the best experience. Here are the updates since the original video was made:
+<h2>Deployment</h2>
+<p>The project is deployed with heroku</p>
+<p>To  do that I had to:</p>
+<ul>
+    <li>create an app on heroku</li>
+    <li>login on heroku from gitpod</li>
+    <li>create a procfile and requirements.txt</li>
+    <li>upload everything on heroku</li>
+    <li>and set the environment variables</li>
+</ul>
+<p>If you want to run the code locally you have to:</p>
+<ul>
+    <li>create a workspace with gitpod</li>
+    <li>install through the terminal Flask, Flask_pymongo and dnspython</li>
+    <li>run the app.py</li>
+    <li>open the "port 8080" from "Open Ports" Tab</li>
+</ul>
+<p>Or you can click on this <a href="https://cook-idea.herokuapp.com/">Cook Book</a></p>
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+<h2>Credits</h2> 
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
---------
-
-Happy coding!
+<h3>Content</h3> 
+<p>Every recipe has a source from where everyting was copied</p>
+<h3>Media</h3>
+<p>The photos from recipe cards are linked by user through link inserted.</p>
+<h3>Acknowledgements</h3> 
+<p>None</p>

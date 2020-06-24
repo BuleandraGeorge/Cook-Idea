@@ -1,46 +1,53 @@
- {% extends "base.html" %}
- {% block content %}
-<form action="/insert_recipe" method="POST">
-    <div class="col s12 ">
-        <div class="card horizontal smoke-bg">
-            <div class="card-stacked">
-                <span class=" add-recipe card-title white-text">Adding a new recipe</span>
-                <div class="card-content">
-                    <div class="row">
-                        <div class="col s12">
-                            <div class="card grey lighten-1">
-                                <div class="card-content input-field">
-                                    <span class="card-title">Recipe Name</span>
+{% extends 'base.html' %}
+{% block content %}
+    <div class="card smoke-bg">
+        <form action="/insert_recipe" method="POST">
+            <div class="card-content">
+                <h3>Add recipe</h3>
+                <div class="row"><!---Name of recipe -->
+                    <div class="col s12 m6">
+                        <div class="card card-color">
+                            <div class="card-content input-field">
+                                <span class="card-title">Recipe Name</span>
                                     <input placeholder="What's the name of the recipe" id="recipe_name" name="rep_name" type="text" class="validate" required>
                                 </div>
+                        </div>
+                    </div> 
+                    <div class="col s12 m6">
+                        <div class="card card-color">
+                            <div class="card-content input-field">
+                                <span class="card-title">URL Photo</span>
+                                <input placeholder="eg:https://media.gettyimages.com/photos/..." name="rep_url" type="text" class="validate" required>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col s12 m6 l4">
-                            <div class="card grey lighten-1">
-                                <div class="card-content input-field" id="add-country-section">
-                                    <span class="card-title">Origin</span>
-                                    <input placeholder="Where comes from the recipe?" id="recipe_country" name="rep_country"  type="text" class="validate" required>
-                                    <a id="add-country-add" class="btn-floating btn-medium waves-effect waves-light blue left"><i class="material-icons">add</i></a>
-                                    <a id="add-country-del" class="btn-floating btn-medium waves-effect waves-light red right"><i class="material-icons">delete</i></a>
-                                </div>
+                </div>
+                <div class="row"><!--country type vega-->
+                    <div class="col s12 l4">
+                        <div class="card card-color">
+                            <div class="card-content input-field" id="add-country-section">
+                                <span class="card-title">Origin</span>
+                                <input placeholder="Where comes from the recipe?" id="recipe_country" name="rep_country"  type="text" class="validate" value="{{zone}}" required>
+                                <a id="add-country-add" class="btn-floating btn-medium waves-effect waves-light blue left"><i class="material-icons">add</i></a>
+                                <a id="add-country-del" class="btn-floating btn-medium waves-effect waves-light red right"><i class="material-icons">delete</i></a>
                             </div>
                         </div>
-                        <div class="col s12 m6 l4">
-                            <div class="card grey lighten-1">
-                                <div class="card-content input-field" id="add-type-section">
-                                    <span class="card-title">Type</span>
-                                    <input placeholder="Which kind of dish?" id="recipe_type" name="rep_type" type="text" class="validate" required>
-                                     <a id="add-type-add" class="btn-floating btn-medium waves-effect waves-light blue left"><i class="material-icons">add</i></a>
-                                     <a id="add-type-del" class="btn-floating btn-medium waves-effect waves-light red right"><i class="material-icons">delete</i></a>
-                                </div>
+                    </div>  
+                    <div class="col s12 l4">
+                        <div class="card card-color">
+                            <div class="card-content input-field" id="add-type-section">
+                                <span class="card-title">Type</span>
+                                <input placeholder="Which kind of dish?" id="recipe_type" name="rep_type" type="text" class="validate" required>
+                                <a id="add-type-add" class="btn-floating btn-medium waves-effect waves-light blue left"><i class="material-icons">add</i></a>
+                                <a id="add-type-del" class="btn-floating btn-medium waves-effect waves-light red right"><i class="material-icons">delete</i></a>
                             </div>
                         </div>
-                        <div class="col s12 m6 l4">
-                            <div class="card grey lighten-1">
-                                <div class="card-content switch">
-                                    <span class="card-title">Vegan</span>
+                    </div>
+                    <div class="col s12 l4 vegan-switch-edit">
+                        <div class="card card-color">
+                            <div class="card-content">
+                                <span class="card-title">Vegan</span>
+                                <div class="switch">
                                     <label>
                                         No
                                         <input name="rep_vegan"  type="checkbox">
@@ -51,84 +58,76 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col s12 m6">
-                            <div class="card grey lighten-1">
-                                <div class="card-content input-field">
-                                        <span class="card-title">Description</span>
-          			                    <input placeholder="A brief description of the recipe?" id="recipe_description" name="rep_description" type="text" class="validate" required>
-                                </div>
+                </div>
+                <div class="row"><!--Description-->
+                    <div class="col s12">
+                        <div class="card card-color">
+                            <div class="card-content input-field">
+                                <span class="card-title">Description</span>
+                                <input placeholder="A brief description of the recipe?" id="recipe_description" name="rep_description" type="text" class="validate" required>
                             </div>
                         </div>
-                        <div class="col s12 m6">
-                            <div class="card grey lighten-1">
-                                <div class="card-content input-field">
-                                        <span class="card-title">Recipe URL Photo</span>
-          			                    <input placeholder="eg:https://media.gettyimages.com/photos/..." name="rep_url" type="text" class="validate" required>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 m6">
-                            <div class="card grey lighten-1">
-                                <div class="card-content input-field" id="add-tools-section">
-                                        <span class="card-title">Tools</span>
-          			                    <input placeholder="What plates or pans are need it?" id="recipe_tools" name="rep_tool" type="text" class="validate" required>
-                                        <a id="add-tool-add" class="btn-floating btn-medium waves-effect waves-light blue left"><i class="material-icons">add</i></a>
-                                        <a id="add-tool-del" class="btn-floating btn-medium waves-effect waves-light red right"><i class="material-icons">delete</i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s12 m6">
-                            <div class="card grey lighten-1">
-                                <div class="card-content input-field" id="add-ingredients-section">
-                                        <span class="card-title">Ingredients</span>
-          			                    <input placeholder="What ingredients are need it?" id="initial_ingredient" name="rep_igd" type="text" class="validate" required>
-                                        <a id="add-ingredient-add" class="btn-floating btn-medium waves-effect waves-light blue left"><i class="material-icons">add</i></a>
-                                        <a id="add-ingredient-del" class="btn-floating btn-medium waves-effect waves-light red right"><i class="material-icons">delete</i></a>
-                                </div>
+                    </div>   
+                </div>
+                <div class="row"><!--ingredients tools-->
+                    <div class="col s12 m6">
+                        <div class="card card-color">
+                            <div class="card-content input-field" id="add-ingredients-section">
+                                <span class="card-title">Ingredients</span>
+                                <input placeholder="What ingredients are need it?" id="initial_ingredient" name="rep_igd" type="text" class="validate" required>
+                                <a id="add-ingredient-add" class="btn-floating btn-medium waves-effect waves-light blue left"><i class="material-icons">add</i></a>
+                                <a id="add-ingredient-del" class="btn-floating btn-medium waves-effect waves-light red right"><i class="material-icons">delete</i></a>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col s12">
-                            <div class="card grey lighten-1">
-                                <div id="add-steps-section" class="card-content input-field">
-                                    <span class="card-title">Which are the steps?</span>
-                                    <input placeholder="What's the first step" id="initial_step" name="rep_step" type="text" class="validate" required>
-                                    <a id="add-step-add" class="btn-floating btn-medium waves-effect waves-light blue left"><i class="material-icons">add</i></a>
-                                    <a id="add-step-del" class="btn-floating btn-medium waves-effect waves-light red right"><i class="material-icons">delete</i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 m6  left">
-                            <div class="card grey lighten-1">
-                                <div class="card-content input-field">
-                                    <span class="card-title">Author</span>
-                                    <input placeholder="Pick a nickname" id="recipe_author" name="rep_author" type="text" class="validate" required>
-                                </div>
-                            </div>
-                        </div>
-                         <div class="col s12 m6 right">
-                            <div class="card grey lighten-1">
-                                <div class="card-content input-field">
-                                    <span class="card-title">Source</span>
-                                    <input placeholder="Url or Other" id="recipe_source" name="rep_source" type="text" class="validate" required>
-                                </div>
+                    <div class="col s12 m6">
+                        <div class="card card-color">
+                            <div class="card-content input-field" id="add-tools-section">
+                                <span class="card-title">Tools</span>
+                                <input placeholder="What plates or pans are need it?" id="recipe_tools" name="rep_tool" type="text" class="validate" required>
+                                <a id="add-tool-add" class="btn-floating btn-medium waves-effect waves-light blue left"><i class="material-icons">add</i></a>
+                                <a id="add-tool-del" class="btn-floating btn-medium waves-effect waves-light red right"><i class="material-icons">delete</i></a>
                             </div>
                         </div>
                     </div>
                 </div>
-               
-                <div class="card-action">
-                 <button class="btn waves-effect waves-light grey lighten-1 right" type="submit" name="action">Upload recipe<i class="material-icons right">send</i></button> 
+                <div class="row">
+                    <div class="col s12"><!--steps-->  
+                        <div class="card card-color">
+                            <div id="add-steps-section" class="card-content input-field">
+                                <span class="card-title">Which are the steps?</span>
+                                <input placeholder="What's the first step" id="initial_step" name="rep_step" type="text" class="validate" required>
+                                <a id="add-step-add" class="btn-floating btn-medium waves-effect waves-light blue left"><i class="material-icons">add</i></a>
+                                <a id="add-step-del" class="btn-floating btn-medium waves-effect waves-light red right"><i class="material-icons">delete</i></a>
+                            </div>
+                        </div> 
+                    </div> 
+                </div>
+                <div class="row"><!--source and author-->
+                    <div class="col s6 m3">
+                        <div class="card card-color">
+                            <div class="card-content input-field">
+                                <span class="card-title">Author</span>
+                                <input placeholder="Pick a nickname" id="recipe_author" name="rep_author" type="text" class="validate" required>
+                            </div>
+                        </div>
+                    </div>   
+                    <div class="col s6 m3 right">
+                        <div class="card card-color">
+                            <div class="card-content input-field">
+                                <span class="card-title">Source</span>
+                                <input placeholder="Url or Other" id="recipe_source" name="rep_source" type="text" class="validate" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="row section">
+                    <div class="col s3 white-text right"><button class="btn waves-effect waves-light grey lighten-1 black-text right" type="submit" name="action">Upload recipe<i class="material-icons right">send</i></button></div>
                 </div>
             </div>
-        </div>
-  </div>
-</form>
+        </form>
+    </div>
 <script src="static/javascript/add_recipe_functionalities.js"></script>
+<script src="{{url_for('static', filename='javascript/edit recipe.js')}}"></script>
 {% endblock %}

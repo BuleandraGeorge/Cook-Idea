@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
         <div class="col s12 m6 l4 ">
-            <div class="card medium grey lighten-1">
+            <div class="card medium card-color">
                 <div class="card-content add-rep-btn-container ">
-                   <a class="btn-floating btn-large waves-effect waves-light deep-orange accent-3 add-recipe-btn" href="{{url_for('add_recipe')}}"><i class="material-icons">add</i></a>
+                   <a class="btn-floating btn-large waves-effect waves-light blue accent-3 add-recipe-btn" href="{{url_for('add_recipe')}}"><i class="material-icons">add</i></a>
                 </div>
             </div>
         </div>
             {% for recipe in recipes %} 
                 <div class="col s12 m6 l4 ">
-                    <div class="card medium grey lighten-1">
+                    <div class="card medium card-color">
                         <div class="card-image">
                             <img class="recipe_img" src="{{recipe.url}}">
                             <span class="card-title cap-text"><span class="smoke-bg">{{recipe.name}}</span></span>
@@ -19,9 +19,9 @@
                         </div>
                         <div class="card-action">
                             <div class="row">
-                                <div class="col s4 "><a class="btn-floating waves-effect waves-light light-blue accent-3" href="{{url_for('like', rep_id=recipe._id)}}"><i class="material-icons">sentiment_very_satisfied</i></a>{{recipe.rating[0]}}</div>
-                                <div class="col s4 "><a class="btn-floating waves-effect waves-light lime accent-3" href="{{url_for('dislike', rep_id=recipe._id)}}"><i class="material-icons">sentiment_very_dissatisfied</i></a>{{recipe.rating[1]}}</div>
-                                <div class="col s4 "><a class="btn-floating waves-effect waves-light grey darken-1" href="{{url_for('rep_details', rep_id=recipe._id)}}"><i class="material-icons">info</i></a></div>
+                                <div class="col s4 push-s1"><a class="btn-floating waves-effect waves-light light-blue accent-3" href="{{url_for('like', rep_id=recipe._id)}}"><i class="material-icons">sentiment_very_satisfied</i></a>{{recipe.rating[0]}}</div>
+                                <div class="col s4 push-s1"><a class="btn-floating waves-effect waves-light lime accent-3" href="{{url_for('dislike', rep_id=recipe._id)}}"><i class="material-icons">sentiment_very_dissatisfied</i></a>{{recipe.rating[1]}}</div>
+                                <div class="col s4 push-s1"><a class="btn-floating waves-effect waves-light grey darken-1" href="{{url_for('rep_details', rep_id=recipe._id)}}"><i class="material-icons">info</i></a></div>
                             </div>    
                         </div>
                     </div>

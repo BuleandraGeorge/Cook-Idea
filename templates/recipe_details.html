@@ -1,158 +1,145 @@
-    {% extends "base.html" %}
-    {% block content %}
+{% extends "base.html" %}
+{% block content %}
     <div class="overlay-layer-delete" id="delete-modal-msg">
-            <div class="modal-layer-delete blue lighten-5">
-                <div class="row">
-                    <div class="col s12">
-                        <h5 class="center-align">Delete current recipe?</h5>
-                    </div>
+        <div class="modal-layer-delete card-color">
+            <div class="row">
+                <div class="col s12">
+                    <h5 class="center-align">Delete current recipe?</h5>
                 </div>
+            </div>
                 <div class="row">
                     <div class="col s6" id="confirm-btn"><a class="waves-effect waves-light red darken-1 btn-small" href="{{url_for('delete', rep_id=recipe._id)}}"><i class="material-icons left">check</i>Confirm</a></div>
                     <div class="col s6 push-s2" id="cancel-btn"><a class="waves-effect waves-light btn-small"><i class="material-icons left">cancel</i>Cancel</a></div>
-                </div>
             </div>
         </div>
-    <div class="col s12 ">
-        <div class="card horizontal smoke-bg">
-            <div class="card-stacked">
-                <span class="add-recipe card-title white-text">Recipe Details</span>
-                <div class="card-content">
-                    <div class="row">
-                        <div class="col s12">
-                            <div class="card grey lighten-1">
-                                <div class="card-content">
-                                    <span class="card-title">{{recipe.name}}</span>
-                                </div>
+    </div>
+    <div class="card smoke-bg">
+        <div class="card-content">
+            <h3 class="white-text">Recipe Details</h3>
+            <div class="row"><!---poza -->
+                    <div class="col s12">
+                        <div class="card card-color">
+                            <div class="card-image">
+                                <img class="img-max-sizes" src="{{recipe.url}}">
+                                <span class="card-title smoke-bg">{{recipe.name}}</span>
                             </div>
+                        </div>
+                    </div>  
+            </div>
+            <div class="row"><!--country type vega-->
+                <div class="col s12 l4">
+                    <div class="card card-color">
+                        <div class="card-content">
+                            <span class="card-title">Origin</span>
+                            {% for zone in recipe.country %}
+                                {%if zone !="world wide"%}
+                                    <span>{{zone}}<br></span>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col s12 m6 l4">
-                            <div class="card grey lighten-1">
-                                <div class="card-content">
-                                    <span class="card-title">Origin</span>
-                                    {% for zone in recipe.country %}
-                                        {%if zone !="world wide"%}
-                                            <span>{{zone}}<br></span>
-                                        {% endif %}
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s12 m6 l4">
-                            <div class="card grey lighten-1">
-                                <div class="card-content">
-                                    <span class="card-title">Type</span>
-                                    {% for type in recipe.types %}
-                                        {% if type != "any" %}
-                                            <span>{{type}}<br></span>
-                                        {% endif %}
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s12 m6 l4">
-                            <div class="card grey lighten-1">
-                                <div class="card-content switch">
-                                    <span class="card-title">Vegan</span>
-                                    {% if recipe.vegan == "yes" %}
-                                        <label>
-                                            No
-                                            <input name="rep_vegan"  type="checkbox" checked>
-                                            <span class="lever"></span>
-                                            Yes
-                                        </label>
-                                    {% else %}
-                                        <label>
-                                            No
-                                            <input name="rep_vegan"  type="checkbox" checked>
-                                            <span class="lever"></span>
-                                            Yes
-                                        </label>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 m6">
-                            <div class="card grey lighten-1">
-                                <div class="card-content">
-                                    <span class="card-title">Description</span>
-                                    <span>{{recipe.description}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s12 m6">
-                            <div class="card grey lighten-1">
-                                <div class="card-content">
-                                    <span class="card-title">Photo</span>
-                                    <img class="max-sizes" src="{{recipe.url}}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 m6">
-                            <div class="card grey lighten-1">
-                                <div class="card-content">
-                                    <span class="card-title">Tools</span>
-                                        {% for tool in recipe.tools %}
-                                            <span>{{tool}},</span>
-                                        {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s12 m6">
-                            <div class="card grey lighten-1">
-                                <div class="card-content">
-                                    <span class="card-title">Ingredients</span>
-                                    {% for ingredient in recipe.ingredients %}
-                                        <span>{{ingredient}}<br></span>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12">
-                            <div class="card grey lighten-1">
-                                <div class="card-content">
-                                    <span class="card-title">Which are the steps?</span>
-                                    {% for step in recipe.steps %}
-                                        <span>{{step}}.<br></span>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 m6 l4">
-                            <div class="card grey lighten-1">
-                                <div class="card-content">
-                                    <span class="card-title">Author</span>
-                                    <span>{{recipe.author}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s12 m6">
-                            <div class="card grey lighten-1">
-                                <div class="card-content">
-                                    <span class="card-title">Source</span>
-                                    <div><span>{{recipe.source}}</span></div>
-                                </div>
-                            </div>
+                </div>  
+                <div class="col s12 l4">
+                    <div class="card card-color">
+                        <div class="card-content">
+                            <span class="card-title">Type</span>
+                            {% for type in recipe.types %}
+                                {% if type != "any" %}
+                                    <span>{{type}}<br></span>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
-                <div class="card-action">
-                    <div class="row">
-                        <div class="col s3 "><a class="btn-floating waves-effect waves-light light-blue accent-3" href="{{url_for('like', rep_id=recipe._id)}}"><i class="material-icons">sentiment_very_satisfied</i></a>{{recipe.rating[0]}}</div>
-                        <div class="col s3 "><a class="btn-floating waves-effect waves-light lime accent-3" href="{{url_for('dislike', rep_id=recipe._id)}}"><i class="material-icons">sentiment_very_dissatisfied</i></a>{{recipe.rating[1]}}</div>
-                        <div id="edit-button" class="col s3"><a class="btn-floating waves-effect waves-light blue-grey darken-1" href="{{url_for('edit', rep_id=recipe._id)}}"><i class="material-icons">edit</i></a></div>
-                        <div id="delete-recipe-btn" class="col s3"><a class="btn-floating waves-effect waves-light red accent-4"><i class="material-icons">delete</i></a></div>
-                    </div>    
+                <div class="col s12 l4">
+                    <div class="card card-color">
+                        <div class="card-content switch">
+                            <span class="card-title">Vegan</span>
+                            {% if recipe.vegan == "on" %}
+                                <label>
+                                    No<input name="rep_vegan"  type="checkbox" checked disabled>
+                                    <span class="lever"></span>
+                                    Yes
+                                </label>
+                            {% else %}
+                                <label>
+                                    No<input name="rep_vegan"  type="checkbox" disabled>
+                                    <span class="lever"></span>
+                                    Yes
+                                </label>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <div class="card card-color">
+                        <div class="card-content">
+                            <span class="card-title">Description</span>
+                            <span>{{recipe.description}}</span>
+                        </div>
+                    </div>
+                </div>   <!--descriere-->
+            </div>
+            <div class="row">                       <!--ingredients tools-->
+                <div class="col s12 m6">
+                    <div class="card card-color">
+                        <div class="card-content">
+                        <span class="card-title">Ingredients</span>
+                        {% for ingredient in recipe.ingredients %}
+                            <span>{{ingredient}}</span>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6">
+                    <div class="card card-color">
+                        <div class="card-content">
+                            <span class="card-title">Tools</span>
+                            {% for tool in recipe.tools %}
+                            <span>{{tool}},</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12"><!--steps-->  
+                    <div class="card card-color">
+                        <div class="card-content">
+                            <span class="card-title">Which are the steps?</span>
+                            {% for step in recipe.steps %}
+                                <span>{{step}}.<br></span>
+                            {% endfor %}
+                        </div>
+                    </div> 
+                </div> 
+            </div>
+            <div class="row"><!--source and author-->
+                <div class="col s6 m3">
+                    <div class="card card-color">
+                        <div class="card-content">
+                            <span class="card-title">Author</span>
+                            <span>{{recipe.author}}</span>
+                        </div>
+                    </div>
+                </div>   
+                <div class="col s6 m3 right">
+                    <div class="card card-color">
+                        <div class="card-content">
+                            <span class="card-title">Source</span>
+                            <span>{{recipe.source}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row section">
+                <div class="col s3 push-l1 white-text"><a class="btn-floating waves-effect waves-light light-blue accent-3" href="{{url_for('like', rep_id=recipe._id)}}"><i class="material-icons">sentiment_very_satisfied</i></a>{{recipe.rating[0]}}</div>
+                <div class="col s3 push-l1 white-text"><a class="btn-floating waves-effect waves-light lime accent-3" href="{{url_for('dislike', rep_id=recipe._id)}}"><i class="material-icons">sentiment_very_dissatisfied</i></a>{{recipe.rating[1]}}</div>
+                <div id="edit-button" class="col s3 push-l1"><a class="btn-floating waves-effect waves-light blue-grey darken-1" href="{{url_for('edit', rep_id=recipe._id)}}"><i class="material-icons">edit</i></a></div>
+                <div id="delete-recipe-btn" class="col s3 push-l1"><a class="btn-floating waves-effect waves-light red accent-4"><i class="material-icons">delete</i></a></div>
             </div>
         </div>
     </div>

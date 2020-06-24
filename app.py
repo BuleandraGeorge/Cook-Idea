@@ -39,8 +39,7 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/get_recipes')
 def get_recipes():
-    return render_template('recipes_list.html', recipes=mongo.db.recipes.find(),
-                                                zones=mongo.db.country.find(), types=mongo.db.dish_types.find())
+    return render_template('recipes_list.html', recipes=mongo.db.recipes.find(), zones=mongo.db.country.find(), types=mongo.db.dish_types.find())
 
 
 @app.route("/find_recipes", methods=["POST", "GET"])
@@ -48,7 +47,7 @@ def display_recipes():
     rep_name = request.form.get("search_name").lower()
     rep_zone = request.form.getlist("zones")
     rep_type = request.form.getlist("types")
-    rep_vegan = request.form.getlist("vegan_search")
+    rep_vegan = request.form.get("vegan_search")
     if not rep_zone:
         rep_zone.append("world wide")
     else:
@@ -61,10 +60,9 @@ def display_recipes():
         rep_type = lowerList(rep_type)
 
     if not rep_vegan:
-        rep_vegan.append('no')
-        rep_vegan.append('yes')
+        rep_vegan = 'no'
     else:
-        rep_vegan.append('yes')
+        rep_vegan.lower()
 
     return render_template('recipes_list.html',
                             recipes=mongo.db.recipes.find(
@@ -72,7 +70,7 @@ def display_recipes():
                                     "name": {"$regex": rep_name},
                                     "country": {"$all": rep_zone},
                                     "types": {"$all": rep_type},
-                                    "vegan": {"$all": rep_vegan}
+                                    "vegan": rep_vegan
                                 })
                                 , zones=mongo.db.country.find(), types=mongo.db.dish_types.find())
 
@@ -93,15 +91,11 @@ def add():
         recipe_name = request.form.get("rep_name").lower()
         recipe_country = request.form.getlist("rep_country")
         recipe_type = request.form.getlist("rep_type")
-        recipe_vegan = request.form.getlist("rep_vegan")
+        recipe_vegan = request.form.get("rep_vegan")
         recipe_country.append('world wide')
         recipe_type.append('any')
         if not recipe_vegan:
-            recipe_vegan.append('no')
-            recipe_vegan.append('yes')
-        else:
-            recipe_vegan.append('yes')
-
+            recipe_vegan = 'no'
         recipe_description = request.form.get("rep_description").lower()
         recipe_url = request.form.get("rep_url")
         recipe_tools = request.form.getlist("rep_tool")
@@ -166,15 +160,11 @@ def upload(rep_id):
         recipe_name = request.form.get("rep_name").lower()
         recipe_country = request.form.getlist("rep_country")
         recipe_type = request.form.getlist("rep_type")
-        recipe_vegan = request.form.getlist("rep_vegan")
+        recipe_vegan = request.form.get("rep_vegan")
         recipe_country.append('world wide')
         recipe_type.append('any')
         if not recipe_vegan:
-            recipe_vegan.append('no')
-            recipe_vegan.append('yes')
-        else:
-            recipe_vegan.append('yes')
-
+            recipe_vegan = 'no'
         recipe_description = request.form.get("rep_description").lower()
         recipe_url = request.form.get("rep_url")
         recipe_tools = request.form.getlist("rep_tool")

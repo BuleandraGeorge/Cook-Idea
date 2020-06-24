@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
 </head>
-<ul id="slide-out" class="sidenav grey lighten-1">
+<ul id="slide-out" class="sidenav dark-blue">
     <li>
         <div class="user-view"><a href="/" class="sidenav-element"><h1>COOK BOOK</h1></a>
             <div class="row">
@@ -18,16 +18,17 @@
             </div>
         </div>
     </li>
-    <li><form action="/find_recipes" method="POST">
-                <div class="row smoke-bg">
-                    <div class="col s12"><h5>Search</h5></div>
+    <li>
+        <form action="/find_recipes" method="POST">
+            <div class="row smoke-bg">
+                <div class="col s12"><h5>Search</h5></div>
                     <div class="input-field col s12">
-                                <input placeholder="Name of the recipe" name="search_name" type="text" class="validate"><br>
-                                <label for="search_name" class="active">Name</label>
+                        <input placeholder="Name of the recipe" name="search_name" type="text" class="validate"><br>
+                        <label for="search_name" class="active">Name</label>
                     </div>
-                    <div class="col s12 input-field">
-                     <select name="zones" multiple>
-                     <option value="World wide" disabled selected>World wide</option>
+                <div class="col s12 input-field">
+                    <select name="zones" multiple>
+                    <option value="World wide" disabled selected>World wide</option>
                         {% for area in zones %}
                             {% for x in area.zone %}
                                 {% if x != "world wide" %}
@@ -39,8 +40,8 @@
                         <label>Select a country</label>
                     </div>
                     <div class="col s12 input-field">
-                     <select name="types" multiple>
-                     <option value="Any" disabled selected>Any</option>
+                        <select name="types" multiple>
+                        <option value="Any" disabled selected>Any</option>
                         {% for type in types %}
                             {% for x in type.rep_type %}
                                 {% if x != "any"  %}
@@ -55,25 +56,24 @@
                         <span>Vegan?</span>
                         <div class="switch">
                             <label>
-                                No
-                                <input id="vegan" name="vegan_search" type="checkbox">
-                                <span class="lever"></span>
-                                Yes
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col s8 push-s6">
-                        <button class="waves-effect grey lighten-1 btn" ><i class="material-icons right">search</i>Find</button>
+                            No
+                            <input name="vegan_search" type="checkbox">
+                            <span class="lever"></span>
+                            Yes
+                        </label>
                     </div>
                 </div>
-            </form>
+                <div class="col s8 push-s7">
+                    <button class="waves-effect grey lighten-1 btn black-text" ><i class="material-icons right">search</i>Find</button>
+                </div>
+            </div>
+        </form>
     </li>
   </ul>
-  
-<body>
+<body class="white-yellow">
     <header>
     <nav>
-        <div class="nav-wrapper grey lighten-1 ">
+        <div class="nav-wrapper dark-blue">
         <a href="/" class="brand-logo">COOK BOOK<i class="material-icons hide-on-med-and-down">restaurant_menu</i></a>
         <ul class="right hide-on-med-and-down">
             <li><a href="/"><i class="material-icons">home</i></a></li>
@@ -83,75 +83,82 @@
         <a href="#" data-target="slide-out" class="sidenav-trigger left"><i class="material-icons">menu</i></a>
         </div>
   </nav>
-  
     </header>
-    <div class="row"> <!---Seach Side-->
-     <div class="col s2 fixed-seach-box white-text hide-on-med-and-down">
+    <div class="row">
+        <div class="col m2 hide-on-med-and-down smoke-bg search-box"> <!---Seach Side-->
             <form action="/find_recipes" method="POST">
-                <div class="row smoke-bg">
+                <div class="row">
                     <div class="col s12"><h5>Search</h5></div>
+                </div>
+                <div class="row">
                     <div class="input-field col s12">
-                                <input placeholder="Name of the recipe" name="search_name" type="text" class="validate"><br>
-                                <label for="search_name" class="active">Name</label>
+                        <input placeholder="Name of the recipe" name="search_name" type="text" class="validate"><br>
+                        <label for="search_name" class="active">Name</label>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col s12 input-field">
-                     <select name="zones" multiple>
-                     <option value="World wide" disabled selected>World wide</option>
-                        {% for area in zones %}
-                            {% for x in area.zone %}
-                                {% if x != "world wide" %}
-                                <option name="zones" value="{{x}}" > {{x}} </option>
-                                {% endif %}
+                        <select name="zones" multiple>
+                            <option value="World wide" disabled selected>World wide</option>
+                            {% for area in zones %}
+                                {% for x in area.zone %}
+                                    {% if x != "world wide" %}
+                                    <option name="zones" value="{{x}}" >{{x}}</option>
+                                    {% endif %}
+                                {% endfor %}
                             {% endfor %}
-                        {% endfor %}
                         </select>
                         <label>Select a country</label>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col s12 input-field">
-                     <select name="types" multiple>
-                     <option value="Any" disabled selected>Any</option>
-                        {% for type in types %}
-                            {% for x in type.rep_type %}
-                                {% if x != "any"  %}
-                                <option name="types" value="{{x}}"> {{x}} </option>
-                                {% endif %}
+                        <select name="types" multiple>
+                            <option value="Any" disabled selected>Any</option>
+                            {% for type in types %}
+                                {% for x in type.rep_type %}
+                                    {% if x != "any"  %}
+                                        <option name="types" value="{{x}}"> {{x}} </option>
+                                    {% endif %}
+                                {% endfor %}
                             {% endfor %}
-                        {% endfor %}
                         </select>
                         <label>Select a type</label>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col s12">
-                        <span>Vegan?</span>
+                        <span class="black-text">Vegan?</span>
                         <div class="switch">
                             <label>
                                 No
-                                <input id="vegan" name="vegan_search" type="checkbox">
+                                <input name="vegan_search" type="checkbox">
                                 <span class="lever"></span>
                                 Yes
                             </label>
                         </div>
                     </div>
-                    <div class="col s8 push-s6">
-                        <button class="waves-effect grey lighten-1 btn" ><i class="material-icons right">search</i>Find</button>
+                </div>
+                <div class="row">
+                    <div class="col s8 m9 l10 push-s5 push-m3 push-l5">
+                        <button class="waves-effect grey lighten-1 btn-small black-text" ><i class="material-icons right">search</i>Find</button>
                     </div>
                 </div>
             </form>
         </div>
-        <div class="col s12 l10  fixed-recipe-feed "> <!---Feed Side-->
-            <div class="scroll-able smoke-bg">
+        <div class="col s12 l10 recipe-feed right">
             {% block content %}
             {% endblock %}
-            </div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{{url_for('static', filename='javascript/inputs_buttons.js')}}"></script>
+    <script src="{{url_for('static', filename='javascript/delete_modal.js')}}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-        $('.modal').modal();});
-        $(document).ready(function(){
-        $('select').formSelect();});
-        $(document).ready(function(){
+        $('.modal').modal();
+        $('select').formSelect();
         $('.sidenav').sidenav();});
     </script>
 </body>

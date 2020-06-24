@@ -1,38 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400&display=swap');
 body{
     text-transform: capitalize;
-    background-image:url('https://ksassets.timeincuk.net/wp/uploads/sites/56/2018/10/grey-kitchen-ideas-featured-image-920x552.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
     font-family: 'Quicksand', sans-serif;
     font-weight: 200;
-
 }
 header{
-    position: fixed;
-    width:100vw;
+    
     z-index: +100;
     font-family: 'Quicksand', sans-serif;
     font-weight: 400;
+    top:-40px;
 }
-.fixed-seach-box{
-    position: fixed;
-    top:11vh;
-}
-.fixed-recipe-feed{
-    position: fixed;
-    z-index: 50;
-    height:88vh;
-    top:8vh;
-}
-.scroll-able{
-    position: absolute;
-    width: 95%;
-    height: 100%;
+.recipe-feed{
     overflow: auto;
-}
-.scroll-able::-webkit-scrollbar {
-  display: none;
 }
 .margin-1rem-left{
     margin-left:1rem;
@@ -67,15 +47,15 @@ header{
     font-size:32px !important;
 }
 .smoke-bg{
-    background-color:rgba(0,0,0,0.7);
-    border-radius:5px;
+    background-color:rgba(0,0,0,0.3);
+    border-radius:2px;
     padding:5px;
 }
 .card.medium{
-    height:300px;
+    height:350px;
 }
 .card-image{
-    max-height: 48% !important;
+    max-height: 60% !important;
 }
 .add-recipe-btn{
     position: absolute;
@@ -93,17 +73,40 @@ header{
     width: 80px;
     height: 80px;
 }
-.max-sizes{
-    max-height: 250px;
-    max-width: 550px;
+.img-max-sizes {
+    max-height: 50vh;
+    margin: auto;
 }
 .sidenav-element{
     color:black !important;
     text-decoration: none !important;
+}
+.padding{
+    padding:2rem;
+}
+.space-around{
+    display:flex;
+    justify-content: space-between;
+}
+.dark-blue{
+    background-color: #537780;
+}
+.white-yellow{
+    background-color: #fffcca;
+}
+.card-color{
+    background-color: #b6eb7a;
+}
+.search-box{
+    position: sticky;
+    top:0px;
 }
 @media only screen and (min-width: 1024px){
     .fixed-recipe-feed{
         top:11vh;
         left:17vw !important;
     }
+    .vegan-switch-edit {
+    margin-top: 0.5rem;
+}
 }
