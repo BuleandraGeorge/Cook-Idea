@@ -88,18 +88,20 @@ header{
     display:flex;
     justify-content: space-between;
 }
-.dark-blue{
-    background-color: #537780;
+.logo-style{
+    background-color: #142850;
+    box-shadow: inset 0px 0px 10px -5px black;
 }
-.white-yellow{
-    background-color: #fffcca;
+.bg-color{
+    background-color: #dae1e7;
 }
 .card-color{
-    background-color: #b6eb7a;
+    background-color: #142850;
 }
 .search-box{
     position: sticky;
-    top:0px;
+    top:0;
+    padding:2rem !important;
 }
 @media only screen and (min-width: 1024px){
     .fixed-recipe-feed{

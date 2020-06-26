@@ -28,10 +28,11 @@ def lowerList(the_list):
 
     return the_list
 
+
 app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = 'cook_idea_db'
-app.config["MONGO_URI"] = 'mongodb+srv://chief_user:cookpass@cookbook-zwtc4.mongodb.net/cook_idea_db?retryWrites=true&w=majority'
+app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 
 mongo = PyMongo(app)
@@ -39,30 +40,33 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/get_recipes')
 def get_recipes():
-    return render_template('recipes_list.html', recipes=mongo.db.recipes.find(), zones=mongo.db.country.find(), types=mongo.db.dish_types.find())
+    return render_template('recipes_list.html', recipes=mongo.db.recipes.find(), zones=mongo.db.country.find(), types=mongo.db.dish_types.find(), zones2=mongo.db.country.find(), types2=mongo.db.dish_types.find())
 
 
 @app.route("/find_recipes", methods=["POST", "GET"])
 def display_recipes():
     rep_name = request.form.get("search_name").lower()
+    print(rep_name)
     rep_zone = request.form.getlist("zones")
     rep_type = request.form.getlist("types")
     rep_vegan = request.form.get("vegan_search")
+
+
     if not rep_zone:
         rep_zone.append("world wide")
     else:
         rep_zone = lowerList(rep_zone)
-
-
+    print(rep_zone)
     if not rep_type:
-        rep_type.append("any")
+        rep_type.append('any')
     else:
         rep_type = lowerList(rep_type)
-
+    print(rep_type)
     if not rep_vegan:
-        rep_vegan = 'no'
+        rep_vegan='no'
     else:
-        rep_vegan.lower()
+        rep_vegan.lower
+    print(rep_vegan)
 
     return render_template('recipes_list.html',
                             recipes=mongo.db.recipes.find(
@@ -70,19 +74,18 @@ def display_recipes():
                                     "name": {"$regex": rep_name},
                                     "country": {"$all": rep_zone},
                                     "types": {"$all": rep_type},
-                                    "vegan": rep_vegan
-                                })
-                                , zones=mongo.db.country.find(), types=mongo.db.dish_types.find())
+                                    "$or": [{"vegan": rep_vegan}, {"vegan": "on"}]
+                                }), zones=mongo.db.country.find(), types=mongo.db.dish_types.find(), zones2=mongo.db.country.find(), types2=mongo.db.dish_types.find())
 
 
 @app.route("/add_recipe")
 def add_recipe():
-    return render_template('add_recipe.html',zones=mongo.db.country.find(), types=mongo.db.dish_types.find())
+    return render_template('add_recipe.html', zones=mongo.db.country.find(), types=mongo.db.dish_types.find(), zones2=mongo.db.country.find(), types2=mongo.db.dish_types.find())
 
 
 @app.route("/recipe_details/<rep_id>")
 def rep_details(rep_id):
-    return render_template('recipe_details.html', recipe=mongo.db.recipes.find_one({'_id': ObjectId(rep_id)}))
+    return render_template('recipe_details.html', recipe=mongo.db.recipes.find_one({'_id': ObjectId(rep_id)}), zones2=mongo.db.country.find(), types2=mongo.db.dish_types.find())
 
 
 @app.route("/insert_recipe", methods=["POST", "GET"])
@@ -99,13 +102,15 @@ def add():
         recipe_description = request.form.get("rep_description").lower()
         recipe_url = request.form.get("rep_url")
         recipe_tools = request.form.getlist("rep_tool")
-        recipe_tools = lowerList(recipe_tools)
         recipe_igd = request.form.getlist("rep_igd")
-        recipe_igd = lowerList(recipe_igd)
         recipe_steps = request.form.getlist("rep_step")
-        recipe_steps = lowerList(recipe_steps)
         recipe_author = request.form.get("rep_author").lower()
         recipe_source = request.form.get('rep_source').lower()
+        recipe_type = lowerList(recipe_type)
+        recipe_country = lowerList(recipe_country)
+        recipe_igd = lowerList(recipe_igd)
+        recipe_tools = lowerList(recipe_tools)
+        recipe_steps = lowerList(recipe_steps)
         time = datetime.now()
         date = time.strftime("%d/%m/%Y")
         new_recipe = {
@@ -134,7 +139,7 @@ def add():
                                 }
                         })
 
-        coll_dish_type =  mongo.db.dish_types               
+        coll_dish_type =  mongo.db.dish_types
         types = coll_dish_type.find_one()['rep_type']
         new_list = update_lists(types, recipe_type)
         coll_dish_type.update_one({}, {
@@ -150,7 +155,7 @@ def add():
 def edit(rep_id):
     recipes = mongo.db.recipes
     recipe = recipes.find_one({'_id': ObjectId(rep_id)})
-    return render_template('edit_recipe.html', recipe=recipe, zones=mongo.db.country.find(), types=mongo.db.dish_types.find())
+    return render_template('edit_recipe.html', recipe=recipe, zones=mongo.db.country.find(), types=mongo.db.dish_types.find(), zones2=mongo.db.country.find(), types2=mongo.db.dish_types.find())
 
 
 @app.route('/upload/<rep_id>', methods=["POST", "GET"])
@@ -168,13 +173,15 @@ def upload(rep_id):
         recipe_description = request.form.get("rep_description").lower()
         recipe_url = request.form.get("rep_url")
         recipe_tools = request.form.getlist("rep_tool")
-        recipe_tools = lowerList(recipe_tools)
         recipe_igd = request.form.getlist("rep_igd")
-        recipe_igd = lowerList(recipe_igd)
         recipe_steps = request.form.getlist("rep_step")
-        recipe_steps = lowerList(recipe_steps)
         recipe_author = request.form.get("rep_author").lower()
         recipe_source = request.form.get('rep_source').lower()
+        recipe_type = lowerList(recipe_type)
+        recipe_country = lowerList(recipe_country)
+        recipe_igd = lowerList(recipe_igd)
+        recipe_tools = lowerList(recipe_tools)
+        recipe_steps = lowerList(recipe_steps)
         time = datetime.now()
         date = time.strftime("%d/%m/%Y")
         recipes.update_one({"_id": ObjectId(rep_id)}, {
@@ -254,7 +261,7 @@ def delete(rep_id):
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('about.html', zones=mongo.db.country.find(), types=mongo.db.dish_types.find(), zones2=mongo.db.country.find(), types2=mongo.db.dish_types.find())
 
 
 @app.route('/comment', methods=["POST", "GET"])
@@ -274,4 +281,4 @@ def comment():
 
 
 if __name__ == '__main__':
-    app.run(host=os.environ.get('IP'), port=int(os.environ.get('PORT')), debug=True)
+    app.run(host=os.environ.get('IP'), port=int(os.environ.get('PORT')), debug=False)

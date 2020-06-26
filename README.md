@@ -1,4 +1,4 @@
-<h1 style="text-align: center">COOK BOOK</h1>
+<h1>style="text-align: center">COOK BOOK</h1>
 
 <p>The goal of the project is to create a website based on a data base that executes CRUD operation on data base.</p>
 <p>The goal of the website is create a huge data base with recipes from all around the word where everyone can look for a recipe or upload one.</p>
@@ -12,7 +12,7 @@
 <p>Details page offers details in deep about recipe and the possibility to perform action on the recipe like edit, delete and like/dislike the recipe.</p>
 <p>The add page offers the possibility to insert a new recipe through the form provided where user can set a name, photo, a description, the origin of the recipe, type, ingredients need it, cooking steps, tools, the source and if is suitable for vegans.<p>
 <p>The edit page has same structure as add page the difference is that the fields are auto filled with the details of the current recipe and updates the current recipe instead of creating a new one.</p>
-<p>About page offers couple details about the porpouse of the website, features, developer, offer the possibility to send ideas of improvement and feedback through the form provided and details about updates that are comming up.</p>
+<p>About page offers couple details about the porpoise of the website, features, developer, offer the possibility to send ideas of improvement and feedback through the form provided and details about updates that are comming up.</p>
 
 <h2>Features</h2>
 
@@ -70,7 +70,6 @@
     <li>Edit and Add form:
         <ul>
             <li>I tried to submit empty form and verify that an error message about the required fields appears.</li>
-            <li>Try to submit the form with all inputs valid and verify that a success message appears.</li>
         </ul>
     </li>
     <li>Responsive:
@@ -83,7 +82,7 @@
 <ol>
     <li>Search form:
         <ul>
-            <li>Trying to iterate 2 times throughout the fields of a document in the same template I found out it doesn't work. That means that it iterates just one time throughout the document and second time it will get nothing from the document's fields, so I decided for the search box for desktop views to let the user to insert freely the country and the type of recipe instead of selecting from existing list of types and countries as on mobile</li>
+            <li>Trying to iterate 2 times throughout the fields of a document in the same template I found out it doesn't work. That means that it iterates just one time throughout the document and second time it will get nothing from the document's fields, so I decided to duplicate the variables that get the lists of countries and types until I find another way to do that</li>
         </ul>
     </li>
 </ol>
@@ -113,6 +112,6 @@
 <h3>Content</h3> 
 <p>Every recipe has a source from where everyting was copied</p>
 <h3>Media</h3>
-<p>The photos from recipe cards are linked by user through link inserted.</p>
+<p>The photos from recipes cards are linked by user through link inserted.</p>
 <h3>Acknowledgements</h3> 
 <p>None</p>
