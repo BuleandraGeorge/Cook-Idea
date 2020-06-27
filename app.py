@@ -32,7 +32,7 @@ def lowerList(the_list):
 app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = 'cook_idea_db'
-app.config["MONGO_URI"] = os.getenv("MONGO_URI")
+app.config["MONGO_URI"] = "mongodb+srv://chief_user:W7f9ekg9LYdAhseW@cookbook-zwtc4.mongodb.net/<dbname>?retryWrites=true&w=majority"
 
 
 mongo = PyMongo(app)
