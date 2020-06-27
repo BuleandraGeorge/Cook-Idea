@@ -32,7 +32,7 @@ def lowerList(the_list):
 app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = 'cook_idea_db'
-app.config["MONGO_URI"] = "mongodb+srv://chief_user:W7f9ekg9LYdAhseW@cookbook-zwtc4.mongodb.net/<dbname>?retryWrites=true&w=majority"
+app.config["MONGO_URI"] = "mongodb+srv://chief_user:chiefpassword@cookbook-zwtc4.mongodb.net/cook_idea_db?retryWrites=true&w=majority"
 
 
 mongo = PyMongo(app)
@@ -281,4 +281,4 @@ def comment():
 
 
 if __name__ == '__main__':
-    app.run(host=os.environ.get('IP'), port=int(os.environ.get('PORT')), debug=False)
+    app.run(host=os.environ.get('IP'), port=int(os.environ.get('PORT')), debug=True)
